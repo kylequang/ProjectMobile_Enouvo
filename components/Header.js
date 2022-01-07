@@ -29,16 +29,16 @@ export default Header;
 
 const styles = StyleSheet.create({
   header: {
-    height: 150,
+    height: 130,
     width: '100%',
     backgroundColor: '#DB147F',
     borderBottomRightRadius: 12,
     borderBottomLeftRadius: 12,
-    paddingVertical: 35,
+    paddingVertical: 20,
     paddingHorizontal: 20,
   },
   contentHeader: {
-    marginTop: 40,
+    marginTop: 30,
     marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',

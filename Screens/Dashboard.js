@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Foundation } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Header from '../components/Header';
@@ -14,6 +14,7 @@ export default function Dashboard() {
         title="Goodstart Early Learning ABC"
         iconLeft="add-box"
       />
+      {/* <ScrollView style={styles.contentContainer}> */}
       <View style={styles.contentContainer}>
         <View style={styles.cardContent}>
           <View style={styles.cardHeader}>
@@ -98,6 +99,7 @@ export default function Dashboard() {
           </View>
         </View>
       </View>
+      {/* </ScrollView> */}
     </View>
   );
 }
@@ -106,13 +108,13 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     width: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
   },
   contentContainer: {
     width: '100%',
     paddingLeft: 20,
     paddingRight: 20,
+    marginTop: 20,
   },
   row: {
     flexDirection: 'row',
@@ -122,8 +124,7 @@ const styles = StyleSheet.create({
     height: 180,
     borderColor: '#F2F2F2',
     padding: 16,
-    marginBottom: 16,
-    marginTop: 16,
+    marginBottom: 17,
     position: 'relative',
     top: -50,
     borderRadius: 20,
