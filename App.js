@@ -16,9 +16,7 @@ export default function App() {
   }, []);
   return (
     <NavigationContainer>
-      <Stack.Navigator
-      // initialRouteName='BottomTab' screenOptions={{headerShown: false}}
-      >
+      <Stack.Navigator>
         {timePassed ? (
           <Stack.Screen
             name="Login"
@@ -37,7 +35,11 @@ export default function App() {
           component={ForgotPass}
           options={{ headerShown: false }}
         />
-        <Stack.Screen component={BottomTab} name="BottomTab" />
+        <Stack.Screen
+          component={BottomTab}
+          name="BottomTab"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen component={Centres} name="Centres" />
         <Stack.Screen component={More} name="More" />
       </Stack.Navigator>
