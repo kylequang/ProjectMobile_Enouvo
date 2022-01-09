@@ -2,20 +2,28 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-const Header = (props) => {
+const Header = ({
+  iconName,
+  title,
+  iconLeft,
+  marginLeft,
+  marginRight,
+  onPress,
+}) => {
   return (
     <View style={styles.header}>
       <View style={styles.contentHeader}>
-        <MaterialCommunityIcons name={props.iconName} size={30} color="#fff" />
-        <Text style={styles.styleText}>{props.title} </Text>
+        <MaterialCommunityIcons name={iconName} size={30} color="#fff" />
+        <Text style={[styles.styleText, { marginLeft }]}>{title}</Text>
         <MaterialIcons
           name="keyboard-arrow-down"
           size={24}
           color="#fff"
-          style={{ marginTop: 5, marginLeft: -50 }}
+          style={{ marginTop: 4, marginRight }}
+          onPress={onPress}
         />
         <MaterialIcons
-          name={props.iconLeft}
+          name={iconLeft}
           size={24}
           color="#fff"
           style={{ marginTop: 4 }}
@@ -48,6 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     marginTop: 5,
-    marginLeft: -35,
+    // marginLeft
+    // marginLeft: -35,
   },
 });

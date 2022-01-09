@@ -13,6 +13,8 @@ export default function Dashboard() {
         iconName="home-outline"
         title="Goodstart Early Learning ABC"
         iconLeft="add-box"
+        marginLeft={2}
+        marginRight={35}
       />
       {/* <ScrollView style={styles.contentContainer}> */}
       <View style={styles.contentContainer}>
