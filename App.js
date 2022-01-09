@@ -7,6 +7,7 @@ import More from './Screens/More';
 import LoginScreen from './Screens/Auth/LoginScreen';
 import Splash from './Screens/Auth/Splash';
 import ForgotPass from './Screens/Auth/ForgotPass';
+import TabViewCentres from './Screens/Tab/TabCentres';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -41,6 +42,11 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen component={Centres} name="Centres" />
+        <Stack.Screen
+          component={TabViewCentres}
+          name="Detail"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen component={More} name="More" />
       </Stack.Navigator>
     </NavigationContainer>
