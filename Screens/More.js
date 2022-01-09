@@ -1,25 +1,58 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React from "react";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import MoreDetail from "./MoreDetail";
 
-export default function More() {
-    return (
-        <SafeAreaView >
-            <View style={styles.container}>
-                <Text style={styles.Text}>More Page content</Text>
-            </View>
-        </SafeAreaView>
-    )
+export default function More({ navigation }) {
+  return (
+    <SafeAreaView>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => navigation.navigate("MoreDetail")}
+      >
+        <View style={styles.userProfile}></View>
+        <Ionicons name="person-circle" size={45} color={"#ACB2B8"} />
+
+        <View style={styles.userName}>
+          <Text style={styles.Text}>Jane Cooper</Text>
+          <Text style={styles.ChildText}>Provider User (Admin)</Text>
+        </View>
+        <View style={styles.iconArrow}>
+          <Ionicons name="chevron-forward-sharp" size={20} color={"black"} />
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        height:'100%',
-        backgroundColor:'yellow',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    Text:{
-        fontSize:25
-    }
+  container: {
+    backgroundColor: "#ffff",
+    paddingVertical: 18,
+    marginTop: -25,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    paddingLeft: 16,
+  },
+  iconArrow: {
+    flex: 1,
+    alignItems: "flex-end",
+    paddingRight: 5,
+  },
+  userName: {
+    paddingLeft: 16,
+    flexDirection: "column",
+  },
+  Text: {
+    fontWeight: "700",
+    fontSize: 16,
+    color: "#171725",
+  },
+  ChildText: {
+    fontWeight: "400",
+    fontSize: 14,
+    color: "#171725",
+  },
 });
