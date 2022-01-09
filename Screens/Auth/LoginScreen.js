@@ -11,6 +11,7 @@ import {
   Image,
   SafeAreaView,
   StatusBar,
+  ScrollView
 } from 'react-native';
 import { auth } from '../../firebase';
 

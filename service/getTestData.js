@@ -17,8 +17,6 @@ export default function getTestData() {
             .then(users => setUser(users))
         console.log(users)
     }, [])
-
-
     return (
         <SafeAreaView>
             <View>
