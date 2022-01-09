@@ -11,7 +11,7 @@ export default function Dashboard() {
     <View style={styles.container}>
       <Header
         iconName="home-outline"
-        title="Goodstart Early Learning ABC"
+        title="GoodStart Early Learning ABC"
         iconLeft="add-box"
       />
       {/* <ScrollView style={styles.contentContainer}> */}
