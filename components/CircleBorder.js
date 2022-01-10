@@ -1,7 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const CircleBorder = ({ size, borderWidth, backgroundColor, children }) => {
+const CircleBorder = ({
+  size,
+  borderWidth,
+  backgroundColor,
+  marginTop,
+  children,
+}) => {
   return (
     <View
       style={{
@@ -14,7 +20,7 @@ const CircleBorder = ({ size, borderWidth, backgroundColor, children }) => {
         borderColor: '#fff',
         borderWidth,
         backgroundColor,
-        marginTop: -8,
+        marginTop,
       }}
     >
       {children}
