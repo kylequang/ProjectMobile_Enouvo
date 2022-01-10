@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dashboard from "../Screens/Dashboard";
 import Centres from "../Screens/Centres";
-import More from "../Screens/More";
+import MoreStack from "../navigation/MoreStack";
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
@@ -11,7 +11,7 @@ export default function BottomTab() {
   return (
     <Tab.Navigator
       initialRouteName="Dashboard"
-      // screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false }}
     >
       <Tab.Screen
         component={Dashboard}
@@ -28,9 +28,10 @@ export default function BottomTab() {
         }}
       />
       <Tab.Screen
-        component={More}
-        name="More"
+        component={MoreStack}
+        name="MoreStack"
         options={{
+          title: "More",
           tabBarIcon: () => (
             <Ionicons name="ellipsis-horizontal" size={23} color={"red"} />
           ),

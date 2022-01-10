@@ -7,9 +7,22 @@ const Stack = createNativeStackNavigator();
 
 function MoreStack() {
   return (
-    <Stack.Navigator initialRouteName="More">
+    <Stack.Navigator
+      initialRouteName="More"
+      screenOptions={{
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "700",
+          fontSize: 16,
+        },
+      }}
+    >
       <Stack.Screen name="More" component={More} />
-      <Stack.Screen name="MoreDetail" component={MoreDetail} />
+      <Stack.Screen
+        options={{ title: "More" }}
+        name="MoreDetail"
+        component={MoreDetail}
+      />
     </Stack.Navigator>
   );
 }

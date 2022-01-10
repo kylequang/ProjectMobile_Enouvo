@@ -11,7 +11,6 @@ export default function More({ navigation }) {
         style={styles.container}
         onPress={() => navigation.navigate("MoreDetail")}
       >
-        <View style={styles.userProfile}></View>
         <Ionicons name="person-circle" size={45} color={"#ACB2B8"} />
 
         <View style={styles.userName}>
