@@ -7,7 +7,7 @@ import {
   ScrollView,
   Text,
 } from 'react-native';
-import { TabView, SceneMap } from 'react-native-tab-view';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import Centre_Info from './Centre_Info';
 import Feature from './Feature';
 import Hours from './Hours';
@@ -16,7 +16,7 @@ import Ratings_Reviews from './Ratings_Reviews';
 import Service from './Service';
 import Summary from './Summary';
 
-// const initialLayout = { width: Dimensions.get('window').width };
+const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
   first: Summary,
@@ -45,21 +45,36 @@ export default function TabViewCentres() {
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
-        //initialLayout={initialLayout}
+        initialLayout={initialLayout}
         style={styles.container}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            indicatorStyle={{ backgroundColor: 'white' }}
+            renderLabel={({ route, color }) => (
+              <View style={styles.tabTitle}>
+                <Text style={{ color: 'black' }}>{route.title}</Text>
+              </View>
+            )}
+            style={{ backgroundColor: 'white' }}
+          />
+        )}
       />
     </ScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     width: '100%',
     marginTop: StatusBar.currentHeight,
-    backgroundColor: 'red',
-    padding: 15,
+    padding: 10,
   },
   scene: {
     flex: 1,
+  },
+  tabTitle: {
+    padding: 5,
+    borderRadius: 10,
+    backgroundColor: 'red',
   },
 });

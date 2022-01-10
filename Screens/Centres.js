@@ -32,7 +32,9 @@ export default function Centres() {
   const renderItem = ({ item }) => {
     const navigateToDetail = (id) => {
       setSelectedId(id);
-      navigation.navigate('Centre Details');
+      setModalVisible(false);
+      navigation.navigate('Centre Details', { screen: 'Summary' });
+      // navigation.navigate('Centre Details');
     };
     const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff';
     const color = item.id === selectedId ? '#DB147F' : '#ACB2B8';
@@ -150,7 +152,7 @@ export default function Centres() {
       </View>
 
       <View style={styles.mainContainer}>
-        <ScrollView style={styles.mainScroll} >
+        <ScrollView style={styles.mainScroll}>
           <View style={styles.mainCard}>
             <View style={styles.imageCard}>
               <Image
