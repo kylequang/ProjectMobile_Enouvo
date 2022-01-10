@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-const AllCentres = () => {
+import TabViewCentres from './Tab/TabCentres';
+const CentreDetail = ({ route, navigation }) => {
   return (
     <View>
-      <Text></Text>
+      <TabViewCentres />
     </View>
   );
 };
 
-export default AllCentres;
+export default CentreDetail;
 
 const styles = StyleSheet.create({});

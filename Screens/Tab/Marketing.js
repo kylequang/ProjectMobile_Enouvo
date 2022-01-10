@@ -1,10 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
 export default function Marketing() {
-    return (
-        <View>
-            <Text>Marketing Screen</Text>
-        </View>
-    )
+  return (
+    <View>
+      <Text>Marketing Screen</Text>
+    </View>
+  );
 }

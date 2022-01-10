@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/core';
 import {
   View,
   Text,
@@ -11,20 +12,47 @@ import {
   Animated,
   SafeAreaView,
   Alert,
+  FlatList,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
-// import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 import Header from '../components/Header';
 import CircleBorder from '../components/CircleBorder';
+import { CENTRE_DATA } from '../service/centre';
+import Item from '../components/Item';
 export default function Centres() {
   const [search, setSearch] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const [checked, setCheck] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const navigation = useNavigation();
+
+  const renderItem = ({ item }) => {
+    const navigateToDetail = (id) => {
+      setSelectedId(id);
+      navigation.navigate('Centre Details');
+    };
+    const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff';
+    const color = item.id === selectedId ? '#DB147F' : '#ACB2B8';
+    const icon =
+      item.id === selectedId
+        ? 'radio-button-checked'
+        : 'radio-button-unchecked';
+
+    return (
+      <Item
+        item={item}
+        // onPress={() => setSelectedId(item.id)}
+        onPress={() => navigateToDetail(item.id)}
+        backgroundColor={{ backgroundColor }}
+        color={color}
+        icon={icon}
+      />
+    );
+  };
+
   return (
     <View>
       <View style={styles.container}>
@@ -342,61 +370,14 @@ export default function Centres() {
                   />
                 </View>
               </View>
-              <ScrollView style={{ marginTop: 20 }}>
-                <TouchableOpacity>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                    }}
-                  >
-                    <Image
-                      source={require('../assets/centres/unsplash_Br-ayoAxFuQ.png')}
-                    />
-                    <Text>All Centres</Text>
-                    {!checked ? (
-                      <MaterialIcons
-                        name="radio-button-checked"
-                        size={24}
-                        color="black"
-                      />
-                    ) : (
-                      <MaterialIcons
-                        name="radio-button-unchecked"
-                        size={24}
-                        color="black"
-                      />
-                    )}
-                  </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => setCheck(!checked)}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                    }}
-                  >
-                    <Image
-                      source={require('../assets/centres/unsplash_Br-ayoAxFuQ.png')}
-                    />
-                    <Text>All Centres</Text>
-                    {!checked ? (
-                      <MaterialIcons
-                        name="radio-button-checked"
-                        size={24}
-                        color="black"
-                      />
-                    ) : (
-                      <MaterialIcons
-                        name="radio-button-unchecked"
-                        size={24}
-                        color="black"
-                      />
-                    )}
-                  </View>
-                </TouchableOpacity>
-              </ScrollView>
+              <View style={{ marginTop: 5, backgroundColor: '#fff' }}>
+                <FlatList
+                  data={CENTRE_DATA}
+                  renderItem={renderItem}
+                  keyExtractor={(item) => item.id}
+                  extraData={selectedId}
+                />
+              </View>
             </View>
           </View>
         </Modal>

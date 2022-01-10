@@ -1,7 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Dashboard from '../Screens/Dashboard';
-import Centres from '../Screens/Centres';
+// import Centres from '../Screens/Centres';
+import CentreStackNavigator from './CentreStackNavigator';
 import More from '../Screens/More';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -36,7 +37,10 @@ export default function BottomTab() {
       })}
     >
       <Tab.Screen name="Dashboard" component={Dashboard} />
-      <Tab.Screen name="Centres" component={Centres} />
+      <Tab.Screen name="Centres" options={{ headerShown: false }}>
+        {() => <CentreStackNavigator />}
+      </Tab.Screen>
+      {/* <Tab.Screen name="Centres" component={Centres} /> */}
       <Tab.Screen name="More" component={More} />
     </Tab.Navigator>
   );
