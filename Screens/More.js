@@ -12,7 +12,6 @@ export default function More({ navigation }) {
         onPress={() => navigation.navigate("MoreDetail")}
       >
         <Ionicons name="person-circle" size={45} color={"#ACB2B8"} />
-
         <View style={styles.userName}>
           <Text style={styles.Text}>Jane Cooper</Text>
           <Text style={styles.ChildText}>Provider User (Admin)</Text>
@@ -22,6 +21,7 @@ export default function More({ navigation }) {
         </View>
       </TouchableOpacity>
     </SafeAreaView>
+
   );
 }
 
