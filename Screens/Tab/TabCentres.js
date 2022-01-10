@@ -9,7 +9,7 @@ import Ratings_Reviews from './Ratings_Reviews';
 import Service from './Service';
 import Summary from './Summary';
 
-const initialLayout = { width: Dimensions.get('window').width };
+// const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
     first: Summary,
@@ -38,7 +38,7 @@ export default function TabViewCentres() {
                     navigationState={{ index, routes }}
                     renderScene={renderScene}
                     onIndexChange={setIndex}
-                    initialLayout={initialLayout}
+                    //initialLayout={initialLayout}
                     style={styles.container}
                 />
             </ScrollView>
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         marginTop: StatusBar.currentHeight,
-        backgroundColor: 'red'
+        backgroundColor: 'red',
+        padding:15
     },
     scene: {
         flex: 1,

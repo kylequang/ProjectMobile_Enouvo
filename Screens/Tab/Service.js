@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 
 export default function Service() {
     return (
-        <View>
+        <View >
             <Text>Service Screen</Text>
         </View>
     )
