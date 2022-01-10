@@ -5,7 +5,7 @@ import { ScrollView, StyleSheet, Text} from 'react-native';
 export default function More() {
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }} >
-      <Text>More Screen</Text>
+       <Text>More Screen</Text>
     </ScrollView>
   );
 }

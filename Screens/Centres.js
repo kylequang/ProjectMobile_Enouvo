@@ -65,7 +65,7 @@ export default function Centres() {
           onPress={() => setModalVisible(true)}
         />
         <View style={styles.sliderContainer}>
-          <ScrollView horizontal={true}>
+          <ScrollView horizontal={true} hide>
             <View style={styles.sliderCard}>
               <View style={{ flexDirection: 'row' }}>
                 <CircleBorder
@@ -150,7 +150,7 @@ export default function Centres() {
       </View>
 
       <View style={styles.mainContainer}>
-        <ScrollView style={styles.mainScroll}>
+        <ScrollView style={styles.mainScroll} >
           <View style={styles.mainCard}>
             <View style={styles.imageCard}>
               <Image
