@@ -221,7 +221,7 @@ export default function Centres() {
                       styles.kindiCareButton,
                       { backgroundColor: '#E9F4FF' },
                     ]}
-                    // onPress={()=>()}
+                  // onPress={()=>()}
                   >
                     <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
                       KindiCare Basic
@@ -306,7 +306,7 @@ export default function Centres() {
                       styles.kindiCareButton,
                       { backgroundColor: '#E9F4FF' },
                     ]}
-                    // onPress={()=>()}
+                  // onPress={()=>()}
                   >
                     <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
                       KindiCare Basic
