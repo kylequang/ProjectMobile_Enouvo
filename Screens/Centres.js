@@ -74,6 +74,7 @@ export default function Centres() {
                   size={40}
                   borderWidth={2}
                   backgroundColor="#FFF0FB"
+                  marginTop={-8}
                 >
                   <MaterialCommunityIcons
                     name="storefront-outline"
@@ -91,6 +92,7 @@ export default function Centres() {
                   size={40}
                   borderWidth={2}
                   backgroundColor="#FFF4EC"
+                  marginTop={-8}
                 >
                   <Ionicons name="location-outline" size={16} color="#FB8429" />
                 </CircleBorder>
@@ -104,6 +106,7 @@ export default function Centres() {
                   size={40}
                   borderWidth={2}
                   backgroundColor="#E9F4FF"
+                  marginTop={-8}
                 >
                   <Feather name="dollar-sign" size={16} color="#32A4FC" />
                 </CircleBorder>
@@ -117,6 +120,7 @@ export default function Centres() {
                   size={40}
                   borderWidth={2}
                   backgroundColor="#FEEFEF"
+                  marginTop={-8}
                 >
                   <FontAwesome5
                     name="clipboard-list"
