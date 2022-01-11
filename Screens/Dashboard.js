@@ -20,7 +20,12 @@ export default function Dashboard() {
       <View style={styles.contentContainer}>
         <View style={styles.cardContent}>
           <View style={styles.cardHeader}>
-            <CircleBorder size={40} borderWidth={2} backgroundColor="#FFF4EC">
+            <CircleBorder
+              size={40}
+              borderWidth={2}
+              backgroundColor="#FFF4EC"
+              marginTop={-8}
+            >
               <Foundation name="page" size={16} color="#FB8429" />
             </CircleBorder>
             <Text style={styles.styleTextTitle}>Applications</Text>
@@ -44,7 +49,12 @@ export default function Dashboard() {
         </View>
         <View style={styles.cardContent}>
           <View style={styles.cardHeader}>
-            <CircleBorder size={40} borderWidth={2} backgroundColor="#E9F4FF">
+            <CircleBorder
+              size={40}
+              borderWidth={2}
+              backgroundColor="#E9F4FF"
+              marginTop={-8}
+            >
               <MaterialCommunityIcons
                 name="sine-wave"
                 size={16}
@@ -72,7 +82,12 @@ export default function Dashboard() {
         </View>
         <View style={styles.cardContent}>
           <View style={styles.cardHeader}>
-            <CircleBorder size={40} borderWidth={2} backgroundColor="#FFF0FB">
+            <CircleBorder
+              size={40}
+              borderWidth={2}
+              backgroundColor="#FFF0FB"
+              marginTop={-8}
+            >
               <MaterialCommunityIcons
                 name="storefront-outline"
                 size={16}
