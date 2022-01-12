@@ -89,7 +89,7 @@ export default function Feature() {
         {
           feature.map((item, key) => {
             return (
-              <View style={styles.row}>
+              <View style={styles.row} key={key}>
                 <View style={{ flexDirection: 'row', padding: 15 }}>
                   <View style={{width:30,alignItems:'center'}}>
                     <FontAwesome5 name={item.icon} color='#333' size={20} />

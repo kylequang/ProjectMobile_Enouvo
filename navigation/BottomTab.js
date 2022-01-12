@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Dashboard from '../Screens/Dashboard';
@@ -5,6 +6,9 @@ import Dashboard from '../Screens/Dashboard';
 import CentreStackNavigator from './CentreStackNavigator';
 import More from '../Screens/More';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MoreStack from "../navigation/MoreStack";
+import { Ionicons } from "@expo/vector-icons";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +45,8 @@ export default function BottomTab() {
         {() => <CentreStackNavigator />}
       </Tab.Screen>
       {/* <Tab.Screen name="Centres" component={Centres} /> */}
-      <Tab.Screen name="More" component={More} />
+      <Tab.Screen name="MoreStack" component={MoreStack}    options={{
+          title: "More"}}/>
     </Tab.Navigator>
   );
 }
