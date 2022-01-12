@@ -22,6 +22,7 @@ const CircleBorder = ({
         backgroundColor,
         marginTop,
       }}
+      key={children}
     >
       {children}
     </View>

@@ -21,22 +21,25 @@ import CircleBorder from '../../components/CircleBorder';
 export default function Summary() {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.containerContent}>
           <View style={styles.informContainer}>
             <View style={styles.informContent}>
               <Image source={require('../../assets/centres/centre1.png')} />
-              <View style={{ marginLeft: 10, marginTop: 12 }}>
+              <View style={styles.goodStartText}>
                 <Text style={styles.text}>
                   Goodstart Early{'\n'}Learning ABC
                 </Text>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.row}>
                   <Entypo name="dot-single" size={20} color="#36BF57" />
                   <Text
                     style={{
                       color: '#36BF57',
                       fontWeight: 'bold',
-                      fontSize: 15,
+                      fontSize: 14,
                     }}
                   >
                     Active
@@ -57,19 +60,17 @@ export default function Summary() {
               />
             </CircleBorder>
           </View>
-          <Divider style={styles.divider} />
+          <View style={styles.divider}></View>
           <View>
             <View>
-              <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                General Information
-              </Text>
-              <View style={{ flexDirection: 'row', marginTop: 10 }}>
+              <Text style={styles.text}>General Information</Text>
+              <View style={styles.generalInform}>
                 <Ionicons name="location-outline" size={20} color="#DB147F" />
                 <Text style={styles.informText}>
                   221 Ferrars Street, South Melbourne,{'\n'} VIC 3205
                 </Text>
               </View>
-              <View style={{ flexDirection: 'row', marginTop: 10 }}>
+              <View style={styles.generalInform}>
                 <MaterialCommunityIcons
                   name="storefront-outline"
                   size={20}
@@ -77,7 +78,7 @@ export default function Summary() {
                 />
                 <Text style={styles.informText}>Goodstart Early Learning</Text>
               </View>
-              <View style={{ flexDirection: 'row', marginTop: 10 }}>
+              <View style={styles.generalInform}>
                 <MaterialCommunityIcons
                   name="blood-bag"
                   size={20}
@@ -85,7 +86,7 @@ export default function Summary() {
                 />
                 <Text style={styles.informText}>Centre-based Care</Text>
               </View>
-              <View style={{ flexDirection: 'row', marginTop: 10 }}>
+              <View style={styles.generalInform}>
                 <MaterialIcons
                   name="calendar-today"
                   size={20}
@@ -105,22 +106,24 @@ export default function Summary() {
                 </Text>
               </TouchableOpacity>
             </View>
-            <Divider style={styles.divider} />
+            <View style={styles.divider}></View>
             <View>
               <Text style={styles.text}>Contact Info</Text>
               <View style={styles.contactContainer}>
                 <MaterialIcons name="phone" size={20} color="#DB147F" />
-                <Text style={styles.contactText}>1300 001 154</Text>
+                <Text style={[styles.contactText, { color: '#171725' }]}>
+                  1300 001 154
+                </Text>
               </View>
               <View style={styles.contactContainer}>
                 <Ionicons name="md-mail-outline" size={20} color="#DB147F" />
-                <Text style={styles.contactText}>
+                <Text style={[styles.contactText, { color: '#171725' }]}>
                   goodstartearlylearning@gmail.com
                 </Text>
               </View>
               <View style={styles.contactContainer}>
                 <Feather name="arrow-up-left" size={20} color="#DB147F" />
-                <Text style={styles.contactText}>
+                <Text style={[styles.contactText, { color: '#DB147F' }]}>
                   https://www.goodstart.org.au/
                 </Text>
               </View>
@@ -129,9 +132,9 @@ export default function Summary() {
         </View>
         <View style={styles.containerContent}>
           <Text style={styles.text}>Enquiries Summary</Text>
-          <Divider style={{ marginTop: 14 }} />
+          <View style={styles.divider}></View>
           <View style={styles.inquireContainer}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={styles.row}>
               <CircleBorder
                 size={35}
                 borderWidth={2}
@@ -145,7 +148,7 @@ export default function Summary() {
             <Text style={styles.inquireNumber}>192</Text>
           </View>
           <View style={styles.inquireContainer}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={styles.row}>
               <CircleBorder
                 size={35}
                 borderWidth={2}
@@ -159,7 +162,7 @@ export default function Summary() {
             <Text style={styles.inquireNumber}>192</Text>
           </View>
           <View style={styles.inquireContainer}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={styles.row}>
               <CircleBorder
                 size={35}
                 borderWidth={2}
@@ -177,7 +180,7 @@ export default function Summary() {
             <Text style={styles.inquireNumber}>192</Text>
           </View>
           <View style={styles.inquireContainer}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={styles.row}>
               <CircleBorder
                 size={35}
                 borderWidth={2}
@@ -205,18 +208,28 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
+    lineHeight: 24,
   },
   containerContent: {
-    borderRadius: 10,
+    borderRadius: 12,
     marginVertical: 5,
-    backgroundColor: '#fff',
-    padding: 15,
+    backgroundColor: '#FFFFFF',
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#F2F0F0',
+  },
+  row: {
+    flexDirection: 'row',
   },
   informContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  goodStartText: {
+    marginLeft: 10,
+    marginTop: 12,
   },
   informContent: {
     flexDirection: 'row',
@@ -225,11 +238,19 @@ const styles = StyleSheet.create({
   },
   informText: {
     marginLeft: 10,
-    fontSize: 15,
+    fontSize: 16,
+    color: '#171725',
+    letterSpacing: 0.02,
   },
   divider: {
     marginTop: 15,
     marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#F2F0F0',
+  },
+  generalInform: {
+    flexDirection: 'row',
+    marginTop: 10,
   },
   kindiCareButton: {
     width: 125,
@@ -240,7 +261,9 @@ const styles = StyleSheet.create({
   },
   kindiCareText: {
     alignContent: 'center',
-    fontSize: 15,
+    fontSize: 14,
+    letterSpacing: 0.02,
+    lineHeight: 24,
   },
   contactContainer: {
     flexDirection: 'row',
@@ -248,7 +271,9 @@ const styles = StyleSheet.create({
   },
   contactText: {
     marginLeft: 10,
-    fontSize: 15,
+    fontSize: 16,
+    letterSpacing: 0.02,
+    lineHeight: 24,
   },
   inquireContainer: {
     flexDirection: 'row',
@@ -257,12 +282,16 @@ const styles = StyleSheet.create({
   },
   inquireText: {
     marginLeft: 15,
-    marginTop: 5,
-    fontSize: 15,
+    marginTop: 6,
+    fontSize: 14,
+    fontFamily: 'Mulish',
+    color: '#2D1F21',
   },
   inquireNumber: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     marginTop: 6,
+    fontFamily: 'Mulish',
+    color: '#2D1F21',
   },
 });
