@@ -19,8 +19,6 @@ export default function BottomTab() {
         headerShown: false,
         tabBarIcon: ({ focused, color }) => {
           let iconName;
-
-
           if (route.name === 'Dashboard') {
             iconName = focused ? 'home-outline' : 'home-outline';
           } else if (route.name === 'Centres') {
@@ -49,9 +47,7 @@ export default function BottomTab() {
         name="MoreStack"
         component={MoreStack}
         options={{
-
           title: 'More',
-
         }}
       />
     </Tab.Navigator>
