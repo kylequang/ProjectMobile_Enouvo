@@ -24,7 +24,6 @@ export default function getTestData() {
                     users?.map(user =>
                         <View>
                             <Text>{user.name}</Text>
-                            <Text>{ }</Text>
                         </View>
                     )
                 }

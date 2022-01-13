@@ -9,6 +9,8 @@ import Splash from './Screens/Auth/Splash';
 import ForgotPass from './Screens/Auth/ForgotPass';
 import MoreStack from "./navigation/MoreStack";
 
+
+
 const Stack = createNativeStackNavigator();
 export default function App() {
   const [timePassed, setTimePassed] = useState(false);

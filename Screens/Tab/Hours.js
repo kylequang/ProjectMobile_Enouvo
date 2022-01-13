@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, Text ,StyleSheet} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function Hours() {
   return (
     <View>
       <Text>Normal</Text>
-      <View>
-
-      </View>
+     
     </View>
   );
 }
