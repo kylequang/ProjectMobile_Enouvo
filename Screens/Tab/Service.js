@@ -7,56 +7,53 @@ export default function Service() {
       id: 1,
       title: 'Long Day Care',
       time: '0 to 12 months',
-      money: 112.00
+      money: 112.0,
     },
     {
       id: 2,
       title: 'Pre-School/ Kindergarten',
       time: '0 to 12 months',
-      money: 112.00
+      money: 112.0,
     },
     {
       id: 3,
       title: 'Before & After School Care',
       time: '0 to 12 months',
-      money: 112.00
+      money: 112.0,
     },
     {
       id: 4,
       title: 'Family Day Care',
       time: '0 to 12 months',
-      money: 112.00
+      money: 112.0,
     },
     {
       id: 5,
       title: 'Vacation Care',
       time: '0 to 12 months',
-      money: 112.00
-    }
-  ]
+      money: 112.0,
+    },
+  ];
   return (
     <ScrollView>
       <View style={styles.container}>
-        {
-          services.map((item) => {
-            return (
-              <View style={styles.row}>
-                <View style={styles.icon}>
-                  <FontAwesome5 name='home' color='#DB147F' size={35} />
-                </View>
-                <View style={styles.content}>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.time}>{item.time}</Text>
-                  <Text style={styles.time}>${item.money}/ full day </Text>
-                </View>
+        {services.map((item) => {
+          return (
+            <View style={styles.row} key={item.id}>
+              <View style={styles.icon}>
+                <FontAwesome5 name="home" color="#DB147F" size={35} />
               </View>
-            )
-          })
-        }
+              <View style={styles.content}>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.time}>{item.time}</Text>
+                <Text style={styles.time}>${item.money}/ full day </Text>
+              </View>
+            </View>
+          );
+        })}
       </View>
     </ScrollView>
   );
-
 }
 const styles = StyleSheet.create({
   container: {
@@ -93,6 +90,6 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 16,
     marginBottom: 5,
-    fontWeight: '300'
-  }
+    fontWeight: '300',
+  },
 });

@@ -3,18 +3,37 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTab from './navigation/BottomTab';
 import Centres from './Screens/Centres';
-import More from './Screens/More';
+// import More from './Screens/More';
 import LoginScreen from './Screens/Auth/LoginScreen';
 import Splash from './Screens/Auth/Splash';
 import ForgotPass from './Screens/Auth/ForgotPass';
-import MoreStack from "./navigation/MoreStack";
+import MoreStack from './navigation/MoreStack';
+import useFonts from './hooks/useFonts';
+import AppLoading from 'expo-app-loading';
+// import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   const [timePassed, setTimePassed] = useState(false);
+  const [IsReady, SetIsReady] = useState(false);
+
   useEffect(() => {
     setTimeout(() => setTimePassed({ timePassed: true }), 10000);
   }, []);
+
+  const LoadFontsAndRestoreToken = async () => {
+    await useFonts();
+  };
+
+  if (!IsReady) {
+    return (
+      <AppLoading
+        startAsync={LoadFontsAndRestoreToken}
+        onFinish={() => SetIsReady(true)}
+        onError={() => {}}
+      />
+    );
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator>
