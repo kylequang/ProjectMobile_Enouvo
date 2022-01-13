@@ -13,7 +13,7 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
-import { auth } from '../../../firebase';
+import { auth } from '../../../src/database/firebase';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
