@@ -3,7 +3,11 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 const Item = ({ item, onPress, backgroundColor, color, icon }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.item, backgroundColor]}
+      key={item.id}
+    >
       <View
         style={{
           flexDirection: 'row',

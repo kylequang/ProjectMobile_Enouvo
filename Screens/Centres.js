@@ -34,7 +34,6 @@ export default function Centres() {
       setSelectedId(id);
       setModalVisible(false);
       navigation.navigate('Centre Details', { screen: 'Summary' });
-      // navigation.navigate('Centre Details');
     };
     const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff';
     const color = item.id === selectedId ? '#DB147F' : '#ACB2B8';
@@ -67,7 +66,11 @@ export default function Centres() {
           onPress={() => setModalVisible(true)}
         />
         <View style={styles.sliderContainer}>
-          <ScrollView horizontal={true} hide>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled={true}
+          >
             <View style={styles.sliderCard}>
               <View style={{ flexDirection: 'row' }}>
                 <CircleBorder
@@ -221,7 +224,7 @@ export default function Centres() {
                       styles.kindiCareButton,
                       { backgroundColor: '#E9F4FF' },
                     ]}
-                  // onPress={()=>()}
+                    // onPress={()=>()}
                   >
                     <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
                       KindiCare Basic
@@ -306,7 +309,7 @@ export default function Centres() {
                       styles.kindiCareButton,
                       { backgroundColor: '#E9F4FF' },
                     ]}
-                  // onPress={()=>()}
+                    // onPress={()=>()}
                   >
                     <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
                       KindiCare Basic
