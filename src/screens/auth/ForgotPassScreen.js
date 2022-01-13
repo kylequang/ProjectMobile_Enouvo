@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from '../../../firebase';
+import { auth } from '../../../src/database/firebase';
 
 import {
   StyleSheet,
