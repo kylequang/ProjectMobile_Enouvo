@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MoreStack from '../navigation/MoreStack';
 import { Ionicons } from '@expo/vector-icons';
 
+
 const Tab = createBottomTabNavigator();
 
 export default function BottomTab() {
@@ -18,6 +19,7 @@ export default function BottomTab() {
         headerShown: false,
         tabBarIcon: ({ focused, color }) => {
           let iconName;
+
 
           if (route.name === 'Dashboard') {
             iconName = focused ? 'home-outline' : 'home-outline';
@@ -30,9 +32,9 @@ export default function BottomTab() {
             <MaterialCommunityIcons name={iconName} size={30} color={color} />
           );
         },
-        tabBarActiveTintColor: '#DB147F',
-        tabBarInactiveTintColor: 'gray',
-        headerTitleAlign: 'center',
+        tabBarActiveTintColor: "#DB147F",
+        tabBarInactiveTintColor: "gray",
+        headerTitleAlign: "center",
         tabBarLabelStyle: {
           fontSize: 15,
         },
@@ -47,7 +49,9 @@ export default function BottomTab() {
         name="MoreStack"
         component={MoreStack}
         options={{
+
           title: 'More',
+
         }}
       />
     </Tab.Navigator>

@@ -1051,11 +1051,11 @@
   dependencies:
     exec-sh "^0.3.2"
     minimist "^1.2.0"
-
 "@expo/config-plugins@4.0.15", "@expo/config-plugins@^4.0.15", "@expo/config-plugins@^4.0.2":
   version "4.0.15"
   resolved "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-4.0.15.tgz"
   integrity sha512-QqxVEt2bFu3ZuI1soULRJv7i0Zrg/FMZ0IxNV7Y3AjH7fhtUJH3pPo9f6MURvqNr+PLxhBlkofkWfunrVejSkw==
+
   dependencies:
     "@expo/config-types" "^43.0.1"
     "@expo/json-file" "8.2.34"
