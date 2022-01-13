@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: '#fff',
     marginLeft: 15,
-    borderRadius: 6,
+    borderRadius: 12,
   },
   sliderTitle: {
     marginLeft: 10,
@@ -484,8 +484,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   mainCard: {
-    backgroundColor: 'white',
-    borderRadius: 6,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
     marginTop: 20,
   },
   imageCard: {
@@ -524,6 +524,8 @@ const styles = StyleSheet.create({
   },
   mainContent: {
     padding: 15,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
   mainTitle: {
     fontSize: 16,
