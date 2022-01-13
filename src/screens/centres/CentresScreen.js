@@ -9,10 +9,10 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-  Animated,
   SafeAreaView,
   Alert,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -158,8 +158,11 @@ export default function CentresScreen() {
         </View>
       </View>
 
-      <View style={styles.mainContainer}>
-        <ScrollView style={styles.mainScroll}>
+      <SafeAreaView style={styles.mainContainer}>
+        <ScrollView
+          style={styles.mainScroll}
+          showsVerticalScrollIndicator={false}
+        >
           <View style={styles.mainCard}>
             <View style={styles.imageCard}>
               <Image
@@ -333,7 +336,7 @@ export default function CentresScreen() {
             </View>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
       <View style={styles.centeredView}>
         <Modal
           animationType="slide"
@@ -405,6 +408,7 @@ export default function CentresScreen() {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    width: '100%',
   },
   sliderContainer: {
     position: 'absolute',
@@ -415,7 +419,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: '#fff',
     marginLeft: 15,
-    borderRadius: 6,
+    borderRadius: 12,
   },
   sliderTitle: {
     marginLeft: 10,
@@ -466,17 +470,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mainScroll: {
+    position: 'absolute',
+    height: 400,
     flex: 1,
+    width: '100%',
     paddingHorizontal: 15,
   },
   mainContainer: {
-    position: 'absolute',
-    top: 270,
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    position: 'relative',
+    bottom: 560,
     width: '100%',
   },
   mainCard: {
-    backgroundColor: 'white',
-    borderRadius: 6,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
     marginTop: 20,
   },
   imageCard: {
@@ -515,6 +524,8 @@ const styles = StyleSheet.create({
   },
   mainContent: {
     padding: 15,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
   mainTitle: {
     fontSize: 16,
