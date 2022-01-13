@@ -35,7 +35,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* {timePassed ? (
+        {timePassed ? (
           <Stack.Screen
             name="Login"
             component={LoginScreen}
@@ -57,9 +57,9 @@ export default function App() {
           component={BottomTab}
           name="BottomTab"
           options={{ headerShown: false }}
-        /> */}
+        />
         <Stack.Screen component={CentresScreen} name="Centres" />
-        {/* <Stack.Screen component={MoreStackNavigator} name="MoreStack" /> */}
+        <Stack.Screen component={MoreStackNavigator} name="MoreStack" />
       </Stack.Navigator>
     </NavigationContainer>
   );
