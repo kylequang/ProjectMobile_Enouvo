@@ -9,10 +9,10 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-  Animated,
   SafeAreaView,
   Alert,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -184,176 +184,177 @@ export default function CentresScreen() {
 
 
       <View style={styles.mainContainer}>
-        <ScrollView style={styles.mainScroll}>
-          {
-            centers && centers.map(center => {
-              return (
-                <View style={styles.mainCard}>
-                  <View style={styles.imageCard}>
-                    <Image
-                      source={{uri:center.img}}
-                      style={styles.img}
-                    />
-                    <View style={styles.imgNumber}>
-                      <Text style={styles.numberText}>9.8</Text>
-                    </View>
-                    <View style={styles.logoImg}>
+        <SafeAreaView>
+          <ScrollView style={styles.mainScroll}>
+            {
+              centers && centers.map(center => {
+                return (
+                  <View style={styles.mainCard}>
+                    <View style={styles.imageCard}>
                       <Image
-                        source={require('../../../assets/images/centres/product1.png')}
+                        source={{ uri: center.img }}
+                        style={styles.img}
                       />
+                      <View style={styles.imgNumber}>
+                        <Text style={styles.numberText}>9.8</Text>
+                      </View>
+                      <View style={styles.logoImg}>
+                        <Image
+                          source={require('../../../assets/images/centres/product1.png')}
+                        />
+                      </View>
                     </View>
-                  </View>
-                  <View style={styles.mainContent}>
-                    <Text style={styles.mainTitle}>
-                      {center.name}
-                    </Text>
-                    <View style={styles.mainText}>
-                      <Ionicons name="location-outline" size={20} color="#2D1F21" />
-                      <Text style={styles.mainSub}>
-                        1 Kerrs Road, Castle Hill, NSW 2154
+                    <View style={styles.mainContent}>
+                      <Text style={styles.mainTitle}>
+                        {center.name}
                       </Text>
-                    
-                    </View>
-                   
-                    <View
-                      style={[styles.mainText, { justifyContent: 'space-between' }]}
-                    >
-                      <View style={{ flexDirection: 'row' }}>
-                        <MaterialCommunityIcons
-                          name="baby-face-outline"
-                          size={20}
-                          color="#2D1F21"
-                        />
-                        <Text style={styles.mainSub}>90 childrens</Text>
-                      </View>
-                      <View style={{ flexDirection: 'row' }}>
-                        <MaterialCommunityIcons
-                          name="clipboard-text-outline"
-                          size={20}
-                          color="#2D1F21"
-                        />
-
-                        <Text style={styles.mainSub}>48 waitlisted</Text>
-                      </View>
-                    </View>
-                    <View
-                      style={[
-                        styles.mainText,
-                        {
-                          justifyContent: 'space-between',
-                        },
-                      ]}
-                    >
-                      <View style={{ flexDirection: 'row' }}>
-                        <FontAwesome5
-                          name="temperature-low"
-                          size={20}
-                          color="#2D1F21"
-                        />
-
-                        <TouchableOpacity
-                          style={[
-                            styles.kindiCareButton,
-                            { backgroundColor: '#E9F4FF' },
-                          ]}
-                        // onPress={()=>()}
-                        >
-                          <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
-                            KindiCare Basic
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                      <View style={{ flexDirection: 'row' }}>
-                        <FontAwesome5
-                          name="hand-holding-water"
-                          size={20}
-                          color="#2D1F21"
-                        />
-                        <Text style={[styles.mainSub, { marginRight: 15 }]}>
-                          4 services
+                      <View style={styles.mainText}>
+                        <Ionicons name="location-outline" size={20} color="#2D1F21" />
+                        <Text style={styles.mainSub}>
+                          1 Kerrs Road, Castle Hill, NSW 2154
                         </Text>
                       </View>
+                      <View
+                        style={[styles.mainText, { justifyContent: 'space-between' }]}
+                      >
+                        <View style={{ flexDirection: 'row' }}>
+                          <MaterialCommunityIcons
+                            name="baby-face-outline"
+                            size={20}
+                            color="#2D1F21"
+                          />
+                          <Text style={styles.mainSub}>90 childrens</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                          <MaterialCommunityIcons
+                            name="clipboard-text-outline"
+                            size={20}
+                            color="#2D1F21"
+                          />
+
+                          <Text style={styles.mainSub}>48 waitlisted</Text>
+                        </View>
+                      </View>
+                      <View
+                        style={[
+                          styles.mainText,
+                          {
+                            justifyContent: 'space-between',
+                          },
+                        ]}
+                      >
+                        <View style={{ flexDirection: 'row' }}>
+                          <FontAwesome5
+                            name="temperature-low"
+                            size={20}
+                            color="#2D1F21"
+                          />
+
+                          <TouchableOpacity
+                            style={[
+                              styles.kindiCareButton,
+                              { backgroundColor: '#E9F4FF' },
+                            ]}
+                          // onPress={()=>()}
+                          >
+                            <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
+                              KindiCare Basic
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                          <FontAwesome5
+                            name="hand-holding-water"
+                            size={20}
+                            color="#2D1F21"
+                          />
+                          <Text style={[styles.mainSub, { marginRight: 15 }]}>
+                            4 services
+                          </Text>
+                        </View>
+                      </View>
                     </View>
                   </View>
-                </View>
-              )
-            })
-          }
-        </ScrollView>
-      </View>
-
-      
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <View style={{ flexDirection: 'row' }}>
-                <Ionicons
-                  name="md-close-outline"
-                  size={24}
-                  color="#2D1F21"
-                  onPress={() => setModalVisible(!modalVisible)}
-                />
-                <Text style={styles.modalText}>Select Centre</Text>
-              </View>
-              <Divider style={{ marginTop: 8 }} />
-              <View>
-                <View
-                  style={[
-                    styles.searchContent,
-                    {
-                      borderWidth: 1,
-                      marginTop: 10,
-                      width: '100%',
-                    },
-                  ]}
-                >
+                )
+              })
+            }
+          </ScrollView>
+        </SafeAreaView>
+        <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <View style={{ flexDirection: 'row' }}>
                   <Ionicons
-                    name="search-outline"
-                    size={20}
-                    color="gray"
-                    style={styles.searchIcon}
+                    name="md-close-outline"
+                    size={24}
+                    color="#2D1F21"
+                    onPress={() => setModalVisible(!modalVisible)}
                   />
-                  <TextInput
-                    placeholder="Search Centre name"
-                    value={search}
-                    onChangeText={(text) => setSearch(text)}
-                    style={styles.searchInput}
+                  <Text style={styles.modalText}>Select Centre</Text>
+                </View>
+                <Divider style={{ marginTop: 8 }} />
+                <View>
+                  <View
+                    style={[
+                      styles.searchContent,
+                      {
+                        borderWidth: 1,
+                        marginTop: 10,
+                        width: '100%',
+                      },
+                    ]}
+                  >
+                    <Ionicons
+                      name="search-outline"
+                      size={20}
+                      color="gray"
+                      style={styles.searchIcon}
+                    />
+                    <TextInput
+                      placeholder="Search Centre name"
+                      value={search}
+                      onChangeText={(text) => setSearch(text)}
+                      style={styles.searchInput}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={{
+                    marginTop: 8,
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: 8,
+                  }}
+                >
+                  <FlatList
+                    data={CENTRE_DATA}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    extraData={selectedId}
                   />
                 </View>
-              </View>
-              <View
-                style={{
-                  marginTop: 8,
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: 8,
-                }}
-              >
-                <FlatList
-                  data={CENTRE_DATA}
-                  renderItem={renderItem}
-                  keyExtractor={(item) => item.id}
-                  extraData={selectedId}
-                />
               </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
+        </View>
+
       </View>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    width: '100%',
   },
   sliderContainer: {
     position: 'absolute',
@@ -364,7 +365,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: '#fff',
     marginLeft: 15,
-    borderRadius: 6,
+    borderRadius: 12,
   },
   sliderTitle: {
     marginLeft: 10,
@@ -415,17 +416,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mainScroll: {
+    position: 'absolute',
+    height: 400,
     flex: 1,
+    width: '100%',
     paddingHorizontal: 15,
   },
   mainContainer: {
-    position: 'absolute',
-    top: 270,
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    position: 'relative',
+    bottom: 560,
     width: '100%',
   },
   mainCard: {
-    backgroundColor: 'white',
-    borderRadius: 6,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
     marginTop: 20,
   },
   imageCard: {
@@ -464,6 +470,8 @@ const styles = StyleSheet.create({
   },
   mainContent: {
     padding: 15,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
   mainTitle: {
     fontSize: 16,
