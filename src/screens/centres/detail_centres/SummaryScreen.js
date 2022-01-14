@@ -123,7 +123,7 @@ export default function SummaryScreen(props) {
                     backgroundColor="#FFF0FB"
                     marginTop={0}
                   >
-                    <Ionicons name={item.icon} size={16} color="#DB147F" />
+                    <FontAwesome5 name={item.icon} size={16} color="#DB147F" />
                   </CircleBorder>
                   <Text style={styles.inquireText}>{item.name}</Text>
                 </View>
