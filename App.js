@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BottomTab from './navigation/BottomTab';
-import Centres from './Screens/Centres';
-// import More from './Screens/More';
-import LoginScreen from './Screens/Auth/LoginScreen';
-import Splash from './Screens/Auth/Splash';
-import ForgotPass from './Screens/Auth/ForgotPass';
-import MoreStack from './navigation/MoreStack';
-import useFonts from './hooks/useFonts';
+import useFonts from './src/hooks/useFonts';
 import AppLoading from 'expo-app-loading';
-// import { useFonts } from 'expo-font';
+import LoginScreen from './src/screens/auth/LoginScreen';
+import SplashScreen from './src/screens/auth/SplashScreen';
+import ForgotPassScreen from './src/screens/auth/ForgotPassScreen';
+import BottomTab from './src/navigations/BottomTab';
+import CentresScreen from './src/screens/centres/CentresScreen';
+import MoreStackNavigator from './src/navigations/MoreStackNavigator';
 
 
 
@@ -39,7 +37,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {timePassed ? (
+        {/* {timePassed ? (
           <Stack.Screen
             name="Login"
             component={LoginScreen}
@@ -48,22 +46,22 @@ export default function App() {
         ) : (
           <Stack.Screen
             name="Splash"
-            component={Splash}
+            component={SplashScreen}
             options={{ headerShown: false }}
           />
         )}
         <Stack.Screen
           name="ForgotPassword"
-          component={ForgotPass}
+          component={ForgotPassScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
           component={BottomTab}
           name="BottomTab"
           options={{ headerShown: false }}
-        />
-        <Stack.Screen component={Centres} name="Centres" />
-        <Stack.Screen component={MoreStack} name="MoreStack" />
+        /> */}
+        <Stack.Screen component={CentresScreen} name="Centres" />
+        {/* <Stack.Screen component={MoreStackNavigator} name="MoreStack" /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
