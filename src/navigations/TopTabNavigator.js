@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import SummaryScreen from '../screens/centres/detail_centres/SummaryScreen';
@@ -11,7 +11,20 @@ import Ratings_ReviewsScreen from '../screens/centres/detail_centres/Ratings_Rev
 
 const TabCentre = createMaterialTopTabNavigator();
 
-const TopTabNavigator = () => {
+const TopTabNavigator = ({ route, navigation }) => {
+
+  const [geInfo, setInfo] = useState([]);
+  const [contact, setContact] = useState([]);
+  const [enquiries, setEnquiries] = useState([]);
+
+
+  useEffect(() => {
+    const { center } = route.params;
+    setInfo(center.General_Infor);
+    setContact(center.Contact_Infor);
+    setEnquiries(center.Enquiries_Sum);
+  }, []);
+
   return (
     <TabCentre.Navigator
       initialRouteName="Summary"
@@ -23,7 +36,8 @@ const TopTabNavigator = () => {
     >
       <TabCentre.Screen
         name="Summary"
-        component={SummaryScreen}
+        children={() => <SummaryScreen info={geInfo}  contact={contact} enquiries={enquiries}/>}
+        // component={SummaryScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity

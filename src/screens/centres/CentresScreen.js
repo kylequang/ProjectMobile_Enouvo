@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
+import { db } from '../../database/firebase';
+import { collection, getDocs } from "firebase/firestore";
 import {
   View,
   Text,
@@ -20,8 +22,7 @@ import Header from '../../components/Header';
 import CircleBorder from '../../components/CircleBorder';
 import Item from '../../components/Item';
 import { CENTRE_DATA } from '../../services/centre';
-import { db } from '../../database/firebase';
-import { collection, getDocs } from "firebase/firestore";
+
 export default function CentresScreen() {
   const [search, setSearch] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -31,13 +32,12 @@ export default function CentresScreen() {
   const [centers, setCenters] = useState([]);
 
   useEffect(() => {
-      LogBox.ignoreLogs(['Setting a timer']);
-      const getCentres = async () => {
-          const data = await getDocs(collection(db, 'Centres'));
-          setCenters(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      };
-      getCentres();
-      console.log(centers)
+    LogBox.ignoreLogs(['Setting a timer']);
+    const getCentres = async () => {
+      const data = await getDocs(collection(db, 'Centres'));
+      setCenters(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getCentres();
   }, []);
 
   const renderItem = ({ item }) => {
@@ -175,190 +175,98 @@ export default function CentresScreen() {
           {
             centers && centers.map(center => {
               return (
-                <View style={styles.mainCard} key={center.id}>
-                  <View style={styles.imageCard}>
-                    <Image
-                      source={require('../../../assets/images/centres/centre1.png')}
-                      style={styles.img}
-                    />
-                    <View style={styles.imgNumber}>
-                      <Text style={styles.numberText}>9.8</Text>
-                    </View>
-                    <View style={styles.logoImg}>
+                <TouchableOpacity key={center.id} onPress={() => { navigation.navigate('Centre Details',{center}) }}>
+                  <View style={styles.mainCard} >
+                    <View style={styles.imageCard}>
                       <Image
-                        source={require('../../../assets/images/centres/product1.png')}
+                        source={{ uri: center.image }}
+                        style={styles.img}
                       />
+                      <View style={styles.imgNumber}>
+                        <Text style={styles.numberText}>9.8</Text>
+                      </View>
+                      <View style={styles.logoImg}>
+                        <Image
+                          source={require('../../../assets/images/centres/product1.png')}
+                        />
+                      </View>
                     </View>
-                  </View>
-                  <View style={styles.mainContent}>
-                    <Text style={styles.mainTitle}>
-                      {center.name}
-                    </Text>
-                    <View style={styles.mainText}>
-                      <Ionicons name="location-outline" size={20} color="#2D1F21" />
-                      <Text style={styles.mainSub}>
-                        1 Kerrs Road, Castle Hill, NSW 2154
+                    <View style={styles.mainContent}>
+                      <Text style={styles.mainTitle}>
+                        {center.name}
                       </Text>
-                    </View>
-                    <View
-                      style={[styles.mainText, { justifyContent: 'space-between' }]}
-                    >
-                      <View style={{ flexDirection: 'row' }}>
-                        <MaterialCommunityIcons
-                          name="baby-face-outline"
-                          size={20}
-                          color="#2D1F21"
-                        />
-                        <Text style={styles.mainSub}>90 childrens</Text>
-                      </View>
-                      <View style={{ flexDirection: 'row' }}>
-                        <MaterialCommunityIcons
-                          name="clipboard-text-outline"
-                          size={20}
-                          color="#2D1F21"
-                        />
-
-                        <Text style={styles.mainSub}>48 waitlisted</Text>
-                      </View>
-                    </View>
-                    <View
-                      style={[
-                        styles.mainText,
-                        {
-                          justifyContent: 'space-between',
-                        },
-                      ]}
-                    >
-                      <View style={{ flexDirection: 'row' }}>
-                        <FontAwesome5
-                          name="temperature-low"
-                          size={20}
-                          color="#2D1F21"
-                        />
-
-                        <TouchableOpacity
-                          style={[
-                            styles.kindiCareButton,
-                            { backgroundColor: '#E9F4FF' },
-                          ]}
-                        // onPress={()=>()}
-                        >
-                          <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
-                            KindiCare Basic
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                      <View style={{ flexDirection: 'row' }}>
-                        <FontAwesome5
-                          name="hand-holding-water"
-                          size={20}
-                          color="#2D1F21"
-                        />
-                        <Text style={[styles.mainSub, { marginRight: 15 }]}>
-                          4 services
+                      <View style={styles.mainText}>
+                        <Ionicons name="location-outline" size={20} color="#2D1F21" />
+                        <Text style={styles.mainSub}>
+                          1 Kerrs Road, Castle Hill, NSW 2154
                         </Text>
                       </View>
+                      <View
+                        style={[styles.mainText, { justifyContent: 'space-between' }]}
+                      >
+                        <View style={{ flexDirection: 'row' }}>
+                          <MaterialCommunityIcons
+                            name="baby-face-outline"
+                            size={20}
+                            color="#2D1F21"
+                          />
+                          <Text style={styles.mainSub}>90 childrens</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                          <MaterialCommunityIcons
+                            name="clipboard-text-outline"
+                            size={20}
+                            color="#2D1F21"
+                          />
+
+                          <Text style={styles.mainSub}>48 waitlisted</Text>
+                        </View>
+                      </View>
+                      <View
+                        style={[
+                          styles.mainText,
+                          {
+                            justifyContent: 'space-between',
+                          },
+                        ]}
+                      >
+                        <View style={{ flexDirection: 'row' }}>
+                          <FontAwesome5
+                            name="temperature-low"
+                            size={20}
+                            color="#2D1F21"
+                          />
+
+                          <TouchableOpacity
+                            style={[
+                              styles.kindiCareButton,
+                              { backgroundColor: '#E9F4FF' },
+                            ]}
+                          // onPress={()=>()}
+                          >
+                            <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
+                              KindiCare Basic
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                          <FontAwesome5
+                            name="hand-holding-water"
+                            size={20}
+                            color="#2D1F21"
+                          />
+                          <Text style={[styles.mainSub, { marginRight: 15 }]}>
+                            4 services
+                          </Text>
+                        </View>
+                      </View>
                     </View>
                   </View>
-                </View>
+                </TouchableOpacity>
+
               )
             })
           }
-          {/* <FlatList
-            data={centers}
-            renderItem={({ item }) =>
-              <View style={styles.mainCard}>
-                <View style={styles.imageCard}>
-                  <Image
-                    source={{ uri: item.img }}
-                    style={styles.img}
-                  />
-                  <View style={styles.imgNumber}>
-                    <Text style={styles.numberText}>9.8</Text>
-                  </View>
-                  <View style={styles.logoImg}>
-                    <Image
-                      source={require('../../../assets/images/centres/product1.png')}
-                    />
-                  </View>
-                </View>
-                <View style={styles.mainContent}>
-                  <Text style={styles.mainTitle}>
-                    {item.name}
-                  </Text>
-                  <View style={styles.mainText}>
-                    <Ionicons name="location-outline" size={20} color="#2D1F21" />
-                    <Text style={styles.mainSub}>
-                      1 Kerrs Road, Castle Hill, NSW 2154
-                    </Text>
-                  </View>
-                  <View
-                    style={[styles.mainText, { justifyContent: 'space-between' }]}
-                  >
-                    <View style={{ flexDirection: 'row' }}>
-                      <MaterialCommunityIcons
-                        name="baby-face-outline"
-                        size={20}
-                        color="#2D1F21"
-                      />
-                      <Text style={styles.mainSub}>90 childrens</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <MaterialCommunityIcons
-                        name="clipboard-text-outline"
-                        size={20}
-                        color="#2D1F21"
-                      />
-
-                      <Text style={styles.mainSub}>48 waitlisted</Text>
-                    </View>
-                  </View>
-                  <View
-                    style={[
-                      styles.mainText,
-                      {
-                        justifyContent: 'space-between',
-                      },
-                    ]}
-                  >
-                    <View style={{ flexDirection: 'row' }}>
-                      <FontAwesome5
-                        name="temperature-low"
-                        size={20}
-                        color="#2D1F21"
-                      />
-
-                      <TouchableOpacity
-                        style={[
-                          styles.kindiCareButton,
-                          { backgroundColor: '#E9F4FF' },
-                        ]}
-                      // onPress={()=>()}
-                      >
-                        <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
-                          KindiCare Basic
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <FontAwesome5
-                        name="hand-holding-water"
-                        size={20}
-                        color="#2D1F21"
-                      />
-                      <Text style={[styles.mainSub, { marginRight: 15 }]}>
-                        4 services
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            }
-
-            keyExtractor={item => item.id}
-          /> */}
-
-
         </ScrollView>
       </SafeAreaView>
       <View style={styles.centeredView}>
