@@ -56,7 +56,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     marginTop: 5,
-    // marginLeft
-    // marginLeft: -35,
   },
 });

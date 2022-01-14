@@ -7,7 +7,6 @@ import {
   ScrollView,
   TextInput,
   Image,
-  TouchableOpacity,
   Modal,
   SafeAreaView,
   Alert,
@@ -15,14 +14,14 @@ import {
   StatusBar,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
 import Header from '../../components/Header';
-import CircleBorder from '../../components/CircleBorder';
-import Item from '../../components/Item';
 import { CENTRE_DATA } from '../../services/centre';
+import { SELECT_CENTRES } from '../../services/selectCentres';
+import { SLIDER_DATA } from '../../services/sliderCentres';
+import SelectItem from '../../components/SelectItem';
+import CentreSliderItem from '../../components/CentreSliderItem';
+import CentreItem from '../../components/CentreItem';
 export default function CentresScreen() {
   const [search, setSearch] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -43,7 +42,7 @@ export default function CentresScreen() {
         : 'radio-button-unchecked';
 
     return (
-      <Item
+      <SelectItem
         item={item}
         // onPress={() => setSelectedId(item.id)}
         onPress={() => navigateToDetail(item.id)}
@@ -66,75 +65,18 @@ export default function CentresScreen() {
           onPress={() => setModalVisible(true)}
         />
         <View style={styles.sliderContainer}>
-          <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            pagingEnabled={true}
-          >
-            <View style={styles.sliderCard}>
-              <View style={{ flexDirection: 'row' }}>
-                <CircleBorder
-                  size={40}
-                  borderWidth={2}
-                  backgroundColor="#FFF0FB"
-                  marginTop={-8}
-                >
-                  <MaterialCommunityIcons
-                    name="storefront-outline"
-                    size={16}
-                    color="#DB147F"
-                  />
-                </CircleBorder>
-                <Text style={styles.sliderTitle}>Total Centres</Text>
-              </View>
-              <Text style={styles.sliderText}>122</Text>
-            </View>
-            <View style={styles.sliderCard}>
-              <View style={{ flexDirection: 'row' }}>
-                <CircleBorder
-                  size={40}
-                  borderWidth={2}
-                  backgroundColor="#FFF4EC"
-                  marginTop={-8}
-                >
-                  <Ionicons name="location-outline" size={16} color="#FB8429" />
-                </CircleBorder>
-                <Text style={styles.sliderTitle}>Total Places</Text>
-              </View>
-              <Text style={styles.sliderText}>3200</Text>
-            </View>
-            <View style={styles.sliderCard}>
-              <View style={{ flexDirection: 'row' }}>
-                <CircleBorder
-                  size={40}
-                  borderWidth={2}
-                  backgroundColor="#E9F4FF"
-                  marginTop={-8}
-                >
-                  <Feather name="dollar-sign" size={16} color="#32A4FC" />
-                </CircleBorder>
-                <Text style={styles.sliderTitle}>Est. Earning</Text>
-              </View>
-              <Text style={styles.sliderText}>$3,465,000</Text>
-            </View>
-            <View style={styles.sliderCard}>
-              <View style={{ flexDirection: 'row' }}>
-                <CircleBorder
-                  size={40}
-                  borderWidth={2}
-                  backgroundColor="#FEEFEF"
-                  marginTop={-8}
-                >
-                  <FontAwesome5
-                    name="clipboard-list"
-                    size={16}
-                    color="#E52828"
-                  />
-                </CircleBorder>
-                <Text style={styles.sliderTitle}>Waitlist Value </Text>
-              </View>
-              <Text style={styles.sliderText}>$3,465</Text>
-            </View>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {SLIDER_DATA.map((item) => {
+              return (
+                <CentreSliderItem
+                  icon={item.icon}
+                  textTitle={item.textTitle}
+                  total={item.total}
+                  ellipseColor={item.ellipseColor}
+                  key={item.id}
+                />
+              );
+            })}
           </ScrollView>
         </View>
       </View>
@@ -154,7 +96,7 @@ export default function CentresScreen() {
           />
         </View>
         <View style={styles.sort}>
-          <Image source={require('../../../assets/icons/sort.png')} />
+          <Image source={require('../../../assets/icons/ic-filter.png')} />
         </View>
       </View>
 
@@ -163,178 +105,24 @@ export default function CentresScreen() {
           style={styles.mainScroll}
           showsVerticalScrollIndicator={false}
         >
-          <View style={styles.mainCard}>
-            <View style={styles.imageCard}>
-              <Image
-                source={require('../../../assets/images/centres/Brisbane-Adelaide-Street-opens.jpg')}
-                style={styles.img}
+          {CENTRE_DATA.map((item) => {
+            return (
+              <CentreItem
+                img={item.img}
+                number={item.number}
+                logo={item.logo}
+                title={item.title}
+                mapText={item.mapText}
+                babyText={item.babyText}
+                backgroundColor={item.kindiBtnColor}
+                color={item.kindiColor}
+                kindiText={item.kindiText}
+                waitlistText={item.waitlistText}
+                serviceText={item.serviceText}
+                key={item.id}
               />
-              <View style={styles.imgNumber}>
-                <Text style={styles.numberText}>9.8</Text>
-              </View>
-              <View style={styles.logoImg}>
-                <Image
-                  source={require('../../../assets/images/centres/product1.png')}
-                />
-              </View>
-            </View>
-            <View style={styles.mainContent}>
-              <Text style={styles.mainTitle}>
-                Castle Hill Montessori Academy
-              </Text>
-              <View style={styles.mainText}>
-                <Ionicons name="location-outline" size={20} color="#2D1F21" />
-                <Text style={styles.mainSub}>
-                  1 Kerrs Road, Castle Hill, NSW 2154
-                </Text>
-              </View>
-              <View
-                style={[styles.mainText, { justifyContent: 'space-between' }]}
-              >
-                <View style={{ flexDirection: 'row' }}>
-                  <MaterialCommunityIcons
-                    name="baby-face-outline"
-                    size={20}
-                    color="#2D1F21"
-                  />
-                  <Text style={styles.mainSub}>90 childrens</Text>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <MaterialCommunityIcons
-                    name="clipboard-text-outline"
-                    size={20}
-                    color="#2D1F21"
-                  />
-
-                  <Text style={styles.mainSub}>48 waitlisted</Text>
-                </View>
-              </View>
-              <View
-                style={[
-                  styles.mainText,
-                  {
-                    justifyContent: 'space-between',
-                  },
-                ]}
-              >
-                <View style={{ flexDirection: 'row' }}>
-                  <FontAwesome5
-                    name="temperature-low"
-                    size={20}
-                    color="#2D1F21"
-                  />
-
-                  <TouchableOpacity
-                    style={[
-                      styles.kindiCareButton,
-                      { backgroundColor: '#E9F4FF' },
-                    ]}
-                    // onPress={()=>()}
-                  >
-                    <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
-                      KindiCare Basic
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <FontAwesome5
-                    name="hand-holding-water"
-                    size={20}
-                    color="#2D1F21"
-                  />
-                  <Text style={[styles.mainSub, { marginRight: 15 }]}>
-                    4 services
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.mainCard}>
-            <View style={styles.imageCard}>
-              <Image
-                source={require('../../../assets/images/centres/Brisbane-Adelaide-Street-opens.jpg')}
-                style={styles.img}
-              />
-              <View style={styles.imgNumber}>
-                <Text style={styles.numberText}>9.8</Text>
-              </View>
-              <View style={styles.logoImg}>
-                <Image
-                  source={require('../../../assets/images/centres/product1.png')}
-                />
-              </View>
-            </View>
-            <View style={styles.mainContent}>
-              <Text style={styles.mainTitle}>
-                Castle Hill Montessori Academy
-              </Text>
-              <View style={styles.mainText}>
-                <Ionicons name="location-outline" size={20} color="#2D1F21" />
-                <Text style={styles.mainSub}>
-                  1 Kerrs Road, Castle Hill, NSW 2154
-                </Text>
-              </View>
-              <View
-                style={[styles.mainText, { justifyContent: 'space-between' }]}
-              >
-                <View style={{ flexDirection: 'row' }}>
-                  <MaterialCommunityIcons
-                    name="baby-face-outline"
-                    size={20}
-                    color="#2D1F21"
-                  />
-                  <Text style={styles.mainSub}>90 childrens</Text>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <MaterialCommunityIcons
-                    name="clipboard-text-outline"
-                    size={20}
-                    color="#2D1F21"
-                  />
-                  <Text style={styles.mainSub}>48 waitlisted</Text>
-                </View>
-              </View>
-              <View
-                style={[
-                  styles.mainText,
-                  {
-                    justifyContent: 'space-between',
-                  },
-                ]}
-              >
-                <View style={{ flexDirection: 'row' }}>
-                  <FontAwesome5
-                    name="temperature-low"
-                    size={20}
-                    color="#2D1F21"
-                  />
-
-                  <TouchableOpacity
-                    style={[
-                      styles.kindiCareButton,
-                      { backgroundColor: '#E9F4FF' },
-                    ]}
-                    // onPress={()=>()}
-                  >
-                    <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
-                      KindiCare Basic
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <FontAwesome5
-                    name="hand-holding-water"
-                    size={20}
-                    color="#2D1F21"
-                  />
-                  <Text style={[styles.mainSub, { marginRight: 15 }]}>
-                    4 services
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
+            );
+          })}
         </ScrollView>
       </SafeAreaView>
       <View style={styles.centeredView}>
@@ -392,7 +180,7 @@ export default function CentresScreen() {
                 }}
               >
                 <FlatList
-                  data={CENTRE_DATA}
+                  data={SELECT_CENTRES}
                   renderItem={renderItem}
                   keyExtractor={(item) => item.id}
                   extraData={selectedId}
@@ -414,29 +202,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 100,
   },
-  sliderCard: {
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    backgroundColor: '#fff',
-    marginLeft: 15,
-    borderRadius: 12,
-  },
-  sliderTitle: {
-    marginLeft: 10,
-    color: '#2D1F21',
-    fontSize: 14,
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    lineHeight: 24,
-    letterSpacing: 0.02,
-  },
-  sliderText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    lineHeight: 32,
-    marginTop: 10,
-  },
-
   searchContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -452,7 +217,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderWidth: 1,
-    borderColor: '#D3CCCC',
+    borderColor: '#F2F2F2',
     borderRadius: 8,
   },
   searchIcon: {
@@ -463,9 +228,9 @@ const styles = StyleSheet.create({
   },
   sort: {
     width: '15%',
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingTop: 15,
     borderRadius: 6,
     alignItems: 'center',
   },
@@ -482,84 +247,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     bottom: 560,
     width: '100%',
-  },
-  mainCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    marginTop: 20,
-  },
-  imageCard: {
-    // borderTopStartRadius: 6,
-  },
-  img: {
-    width: '100%',
-    height: 100,
-    resizeMode: 'cover',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-  },
-  imgNumber: {
-    position: 'absolute',
-    top: 12,
-    left: 10,
-    width: 35,
-    height: 30,
-    padding: 5,
-    backgroundColor: '#DB147F',
-    borderRadius: 6,
-  },
-  numberText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: 'bold',
-  },
-  logoImg: {
-    position: 'absolute',
-    right: 10,
-    bottom: 12,
-    backgroundColor: '#fff',
-    borderRadius: 6,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-  },
-  mainContent: {
-    padding: 15,
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-  },
-  mainTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2D1F21',
-    fontStyle: 'normal',
-    lineHeight: 24,
-    letterSpacing: 0.02,
-  },
-  mainText: {
-    flexDirection: 'row',
-    marginTop: 12,
-  },
-  mainSub: {
-    marginLeft: 10,
-    fontSize: 14,
-    color: '#2D1F21',
-    fontStyle: 'normal',
-    lineHeight: 24,
-    letterSpacing: 0.02,
-    alignContent: 'center',
-  },
-  kindiCareButton: {
-    marginTop: -4,
-    marginLeft: 10,
-    padding: 5,
-    borderRadius: 6,
-  },
-  kindiCareText: {
-    alignContent: 'center',
-    fontSize: 12,
-    fontStyle: 'normal',
-    lineHeight: 16,
-    letterSpacing: 0.02,
   },
   centeredView: {
     flex: 1,

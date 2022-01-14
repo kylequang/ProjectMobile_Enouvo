@@ -7,7 +7,6 @@ import LoginScreen from './src/screens/auth/LoginScreen';
 import SplashScreen from './src/screens/auth/SplashScreen';
 import ForgotPassScreen from './src/screens/auth/ForgotPassScreen';
 import BottomTab from './src/navigations/BottomTab';
-import CentresScreen from './src/screens/centres/CentresScreen';
 import MoreStackNavigator from './src/navigations/MoreStackNavigator';
 
 const Stack = createNativeStackNavigator();

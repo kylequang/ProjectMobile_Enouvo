@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 const CircleBorder = ({
   size,
@@ -10,18 +10,17 @@ const CircleBorder = ({
 }) => {
   return (
     <View
-      style={{
-        width: size,
-        height: size,
-        borderRadius: 0.5 * size,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: '#fff',
-        borderWidth,
-        backgroundColor,
-        marginTop,
-      }}
+      style={[
+        styles.container,
+        {
+          width: size,
+          height: size,
+          borderRadius: 0.5 * size,
+          borderWidth,
+          backgroundColor,
+          marginTop,
+        },
+      ]}
       key={children}
     >
       {children}
@@ -30,3 +29,12 @@ const CircleBorder = ({
 };
 
 export default CircleBorder;
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#fff',
+  },
+});

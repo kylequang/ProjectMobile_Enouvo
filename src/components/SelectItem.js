@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-const Item = ({ item, onPress, backgroundColor, color, icon }) => {
+const SelectItem = ({ item, onPress, backgroundColor, color, icon }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -25,7 +25,7 @@ const Item = ({ item, onPress, backgroundColor, color, icon }) => {
   );
 };
 
-export default Item;
+export default SelectItem;
 
 const styles = StyleSheet.create({
   item: {
