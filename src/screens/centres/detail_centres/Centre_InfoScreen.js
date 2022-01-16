@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Centre_InfoScreen() {
+export default function Centre_InfoScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -25,15 +25,15 @@ export default function Centre_InfoScreen() {
         <View style={styles.divider}></View>
         <View style={styles.addition}>
           <Text style={styles.add1}>Admin Email</Text>
-          <Text style={styles.add2}>sthmelbourne@oac.edu.au</Text>
+          <Text style={styles.add2}>{props.add.Admin_Email}</Text>
         </View>
         <View style={styles.addition}>
           <Text style={styles.add1}>Region</Text>
-          <Text style={styles.add2}>Victoria Metro</Text>
+          <Text style={styles.add2}>{props.add.Region}</Text>
         </View>
         <View style={styles.addition}>
           <Text style={styles.add1}>LGA</Text>
-          <Text style={styles.add2}>Melbourne</Text>
+          <Text style={styles.add2}>{props.add.LGA}</Text>
         </View>
       </View>
     </View>
