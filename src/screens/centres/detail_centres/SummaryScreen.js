@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -19,7 +19,10 @@ import {
 } from '@expo/vector-icons';
 import CircleBorder from '../../../components/CircleBorder';
 
-export default function SummaryScreen() {
+export default function SummaryScreen(props) {
+  useEffect(() => {
+
+  }, [])
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -67,42 +70,23 @@ export default function SummaryScreen() {
           <View>
             <View>
               <Text style={styles.text}>General Information</Text>
-              <View style={styles.generalInform}>
-                <Ionicons name="location-outline" size={20} color="#DB147F" />
-                <Text style={styles.informText}>
-                  221 Ferrars Street, South Melbourne,{'\n'} VIC 3205
-                </Text>
-              </View>
-              <View style={styles.generalInform}>
-                <MaterialCommunityIcons
-                  name="storefront-outline"
-                  size={20}
-                  color="#DB147F"
-                />
-                <Text style={styles.informText}>Goodstart Early Learning</Text>
-              </View>
-              <View style={styles.generalInform}>
-                <MaterialCommunityIcons
-                  name="blood-bag"
-                  size={20}
-                  color="#DB147F"
-                />
-                <Text style={styles.informText}>Centre-based Care</Text>
-              </View>
-              <View style={styles.generalInform}>
-                <MaterialIcons
-                  name="calendar-today"
-                  size={20}
-                  color="#DB147F"
-                />
-                <Text style={styles.informText}>01 January 2012</Text>
-              </View>
+              {
+                props.info.map((item) => (
+                  <View style={styles.generalInform}>
+                    <FontAwesome5 name={item.icon} size={20} color="#DB147F" />
+                    <Text style={styles.informText}>
+                      {item.name}
+                    </Text>
+                  </View>
+                ))
+              }
+
             </View>
             <View style={styles.contactContainer}>
               <FontAwesome5 name="temperature-low" size={20} color="#DB147F" />
               <TouchableOpacity
                 style={[styles.kindiCareButton, { backgroundColor: '#E9F4FF' }]}
-                // onPress={()=>()}
+              // onPress={()=>()}
               >
                 <Text style={[styles.kindiCareText, { color: '#32A4FC' }]}>
                   KindiCare Basic
@@ -110,92 +94,43 @@ export default function SummaryScreen() {
               </TouchableOpacity>
             </View>
             <View style={styles.divider}></View>
+
             <View>
               <Text style={styles.text}>Contact Info</Text>
-              <View style={styles.contactContainer}>
-                <MaterialIcons name="phone" size={20} color="#DB147F" />
-                <Text style={[styles.contactText, { color: '#171725' }]}>
-                  1300 001 154
-                </Text>
-              </View>
-              <View style={styles.contactContainer}>
-                <Ionicons name="md-mail-outline" size={20} color="#DB147F" />
-                <Text style={[styles.contactText, { color: '#171725' }]}>
-                  goodstartearlylearning@gmail.com
-                </Text>
-              </View>
-              <View style={styles.contactContainer}>
-                <Feather name="arrow-up-left" size={20} color="#DB147F" />
-                <Text style={[styles.contactText, { color: '#DB147F' }]}>
-                  https://www.goodstart.org.au/
-                </Text>
-              </View>
+              {
+                props.contact.map((item) => (
+                  <View style={styles.contactContainer}>
+                    <MaterialIcons name={item.icon} size={20} color="#DB147F" />
+                    <Text style={[styles.contactText, { color: '#171725' }]}>
+                      {item.name}
+                    </Text>
+                  </View>
+                ))
+              }
             </View>
           </View>
         </View>
         <View style={styles.containerContent}>
           <Text style={styles.text}>Enquiries Summary</Text>
           <View style={styles.divider}></View>
-          <View style={styles.inquireContainer}>
-            <View style={styles.row}>
-              <CircleBorder
-                size={35}
-                borderWidth={2}
-                backgroundColor="#FFF0FB"
-                marginTop={0}
-              >
-                <Ionicons name="md-heart-outline" size={16} color="#DB147F" />
-              </CircleBorder>
-              <Text style={styles.inquireText}>Total Enquiries</Text>
-            </View>
-            <Text style={styles.inquireNumber}>192</Text>
-          </View>
-          <View style={styles.inquireContainer}>
-            <View style={styles.row}>
-              <CircleBorder
-                size={35}
-                borderWidth={2}
-                backgroundColor="#E9F4FF"
-                marginTop={0}
-              >
-                <Ionicons name="information" size={16} color="#32A4FC" />
-              </CircleBorder>
-              <Text style={styles.inquireText}>More Information</Text>
-            </View>
-            <Text style={styles.inquireNumber}>192</Text>
-          </View>
-          <View style={styles.inquireContainer}>
-            <View style={styles.row}>
-              <CircleBorder
-                size={35}
-                borderWidth={2}
-                backgroundColor="#EDF9F0"
-                marginTop={0}
-              >
-                <MaterialCommunityIcons
-                  name="chair-school"
-                  size={16}
-                  color="#36BF57"
-                />
-              </CircleBorder>
-              <Text style={styles.inquireText}>Check for Vacancies</Text>
-            </View>
-            <Text style={styles.inquireNumber}>192</Text>
-          </View>
-          <View style={styles.inquireContainer}>
-            <View style={styles.row}>
-              <CircleBorder
-                size={35}
-                borderWidth={2}
-                backgroundColor="#F3EAFF"
-                marginTop={0}
-              >
-                <Ionicons name="md-flag-outline" size={16} color="#BF2CF3" />
-              </CircleBorder>
-              <Text style={styles.inquireText}>Book a Tour or Visit</Text>
-            </View>
-            <Text style={styles.inquireNumber}>192</Text>
-          </View>
+          {
+            props.enquiries.map((item) => (
+              <View style={styles.inquireContainer}>
+                <View style={styles.row}>
+                  <CircleBorder
+                    size={35}
+                    borderWidth={2}
+                    backgroundColor="#FFF0FB"
+                    marginTop={0}
+                  >
+                    <FontAwesome5 name={item.icon} size={16} color="#DB147F" />
+                  </CircleBorder>
+                  <Text style={styles.inquireText}>{item.name}</Text>
+                </View>
+                <Text style={styles.inquireNumber}>{item.count}</Text>
+              </View>
+            ))
+          }
         </View>
       </ScrollView>
     </SafeAreaView>
