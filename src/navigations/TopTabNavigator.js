@@ -16,13 +16,19 @@ const TopTabNavigator = ({ route, navigation }) => {
   const [geInfo, setInfo] = useState([]);
   const [contact, setContact] = useState([]);
   const [enquiries, setEnquiries] = useState([]);
-
+  const [feature, setFeature] = useState([]);
+  const [service, setService] = useState([]);
+  const [add, setAdd] = useState([]);
 
   useEffect(() => {
     const { center } = route.params;
     setInfo(center.General_Infor);
     setContact(center.Contact_Infor);
     setEnquiries(center.Enquiries_Sum);
+    setFeature(center.Features);
+    setService(center.Services);
+    setAdd(center.Additional_Details);
+
   }, []);
 
   return (
@@ -36,8 +42,7 @@ const TopTabNavigator = ({ route, navigation }) => {
     >
       <TabCentre.Screen
         name="Summary"
-        children={() => <SummaryScreen info={geInfo}  contact={contact} enquiries={enquiries}/>}
-        // component={SummaryScreen}
+        children={() => <SummaryScreen info={geInfo} contact={contact} enquiries={enquiries} />}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity
@@ -65,7 +70,7 @@ const TopTabNavigator = ({ route, navigation }) => {
       />
       <TabCentre.Screen
         name="Centre Information"
-        component={Centre_InfoScreen}
+        children={() => <Centre_InfoScreen add={add} />}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity
@@ -121,7 +126,7 @@ const TopTabNavigator = ({ route, navigation }) => {
       />
       <TabCentre.Screen
         name="Services"
-        component={ServiceScreen}
+        children={() => <ServiceScreen service={service} />}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity
@@ -149,7 +154,7 @@ const TopTabNavigator = ({ route, navigation }) => {
       />
       <TabCentre.Screen
         name="Features"
-        component={FeatureScreen}
+        children={() => <FeatureScreen feature={feature} />}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity
