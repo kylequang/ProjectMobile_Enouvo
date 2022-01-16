@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
+import { db } from '../../database/firebase';
+import { collection, getDocs } from "firebase/firestore";
 import {
   View,
   Text,
@@ -12,48 +14,31 @@ import {
   SafeAreaView,
   Alert,
   FlatList,
-  StatusBar,
+  StatusBar, LogBox,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons, Feather, FontAwesome5 } from '@expo/vector-icons';
 import Header from '../../components/Header';
 import CircleBorder from '../../components/CircleBorder';
 import Item from '../../components/Item';
 import { CENTRE_DATA } from '../../services/centre';
-import { doc, getDoc } from "firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from '../../database/firebase';
-import { getAllCentres } from '../../services/getData';
 
 export default function CentresScreen() {
   const [search, setSearch] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const navigation = useNavigation();
+
   const [centers, setCenters] = useState([]);
 
-  //getAllData from FireBase
-  const getData = async () => {
-    //const response = db.collection('Centres');
-    const querySnapshot = await getDocs(collection(db, "Centres"));
-    // const data = await response.get();
-    querySnapshot.forEach(item => {
-      setCenters([...centers, item.data()])
-    })
-  }
-  //const querySnapshot = await getDocs(collection(db, "Centres"));
-  //querySnapshot.forEach((doc) => {
-  //setCenters([...centers, doc.data()]);
-  // console.log(doc.id, " => ", doc.data());
-  //});
-  // setTimeout(() => setLoading({ loading: true }), 25000);
-
-  useEffect(async () => {
-    getData();
-  }, [])
+  useEffect(() => {
+    LogBox.ignoreLogs(['Setting a timer']);
+    const getCentres = async () => {
+      const data = await getDocs(collection(db, 'Centres'));
+      setCenters(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getCentres();
+  }, []);
 
   const renderItem = ({ item }) => {
     const navigateToDetail = (id) => {
@@ -67,10 +52,10 @@ export default function CentresScreen() {
       item.id === selectedId
         ? 'radio-button-checked'
         : 'radio-button-unchecked';
+
     return (
       <Item
         item={item}
-        // onPress={() => setSelectedId(item.id)}
         onPress={() => navigateToDetail(item.id)}
         backgroundColor={{ backgroundColor }}
         color={color}
@@ -182,17 +167,19 @@ export default function CentresScreen() {
         </View>
       </View>
 
-
-      <View style={styles.mainContainer}>
-        <SafeAreaView>
-          <ScrollView style={styles.mainScroll}>
-            {
-              centers && centers.map(center => {
-                return (
-                  <View style={styles.mainCard}>
+      <SafeAreaView style={styles.mainContainer}>
+        <ScrollView
+          style={styles.mainScroll}
+          showsVerticalScrollIndicator={false}
+        >
+          {
+            centers && centers.map(center => {
+              return (
+                <TouchableOpacity key={center.id} onPress={() => { navigation.navigate('Centre Details',{center}) }}>
+                  <View style={styles.mainCard} >
                     <View style={styles.imageCard}>
                       <Image
-                        source={{ uri: center.img }}
+                        source={{ uri: center.image }}
                         style={styles.img}
                       />
                       <View style={styles.imgNumber}>
@@ -275,82 +262,81 @@ export default function CentresScreen() {
                       </View>
                     </View>
                   </View>
-                )
-              })
-            }
-          </ScrollView>
-        </SafeAreaView>
-        <View style={styles.centeredView}>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
-            }}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <View style={{ flexDirection: 'row' }}>
-                  <Ionicons
-                    name="md-close-outline"
-                    size={24}
-                    color="#2D1F21"
-                    onPress={() => setModalVisible(!modalVisible)}
-                  />
-                  <Text style={styles.modalText}>Select Centre</Text>
-                </View>
-                <Divider style={{ marginTop: 8 }} />
-                <View>
-                  <View
-                    style={[
-                      styles.searchContent,
-                      {
-                        borderWidth: 1,
-                        marginTop: 10,
-                        width: '100%',
-                      },
-                    ]}
-                  >
-                    <Ionicons
-                      name="search-outline"
-                      size={20}
-                      color="gray"
-                      style={styles.searchIcon}
-                    />
-                    <TextInput
-                      placeholder="Search Centre name"
-                      value={search}
-                      onChangeText={(text) => setSearch(text)}
-                      style={styles.searchInput}
-                    />
-                  </View>
-                </View>
+                </TouchableOpacity>
+
+              )
+            })
+          }
+        </ScrollView>
+      </SafeAreaView>
+      <View style={styles.centeredView}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <View style={{ flexDirection: 'row' }}>
+                <Ionicons
+                  name="md-close-outline"
+                  size={24}
+                  color="#2D1F21"
+                  onPress={() => setModalVisible(!modalVisible)}
+                />
+                <Text style={styles.modalText}>Select Centre</Text>
+              </View>
+              <Divider style={{ marginTop: 8 }} />
+              <View>
                 <View
-                  style={{
-                    marginTop: 8,
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: 8,
-                  }}
+                  style={[
+                    styles.searchContent,
+                    {
+                      borderWidth: 1,
+                      marginTop: 10,
+                      width: '100%',
+                    },
+                  ]}
                 >
-                  <FlatList
-                    data={CENTRE_DATA}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                    extraData={selectedId}
+                  <Ionicons
+                    name="search-outline"
+                    size={20}
+                    color="gray"
+                    style={styles.searchIcon}
+                  />
+                  <TextInput
+                    placeholder="Search Centre name"
+                    value={search}
+                    onChangeText={(text) => setSearch(text)}
+                    style={styles.searchInput}
                   />
                 </View>
               </View>
+              <View
+                style={{
+                  marginTop: 8,
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: 8,
+                }}
+              >
+                <FlatList
+                  data={CENTRE_DATA}
+                  renderItem={renderItem}
+                  keyExtractor={(item) => item.id}
+                  extraData={selectedId}
+                />
+              </View>
             </View>
-          </Modal>
-        </View>
-
+          </View>
+        </Modal>
       </View>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     height: '100%',
