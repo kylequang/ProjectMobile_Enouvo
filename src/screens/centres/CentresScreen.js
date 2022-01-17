@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/core';
 import {
   View,
   Text,
@@ -26,14 +25,8 @@ export default function CentresScreen() {
   const [search, setSearch] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
-  const navigation = useNavigation();
 
   const renderItem = ({ item }) => {
-    const navigateToDetail = (id) => {
-      setSelectedId(id);
-      setModalVisible(false);
-      navigation.navigate('Centre Details', { screen: 'Summary' });
-    };
     const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff';
     const color = item.id === selectedId ? '#DB147F' : '#ACB2B8';
     const icon =
@@ -108,7 +101,6 @@ export default function CentresScreen() {
           {CENTRE_DATA.map((item) => {
             return (
               <CentreItem
-                onPress={() => navigateToDetail(id)}
                 img={item.img}
                 number={item.number}
                 logo={item.logo}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import SummaryScreen from '../screens/centres/detail_centres/SummaryScreen';
 import Centre_InfoScreen from '../screens/centres/detail_centres/Centre_InfoScreen';
@@ -222,5 +222,3 @@ const TopTabNavigator = () => {
 };
 
 export default TopTabNavigator;
-
-const styles = StyleSheet.create({});

@@ -1,11 +1,9 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/core';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Foundation, MaterialCommunityIcons } from '@expo/vector-icons';
 import Header from '../../components/Header';
 import CircleBorder from '../../components/CircleBorder';
 export default function DashboardScreen() {
-  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Header

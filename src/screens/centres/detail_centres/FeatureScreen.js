@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Switch } from 'react-native';
-import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { useState } from 'react';
 export default function FeatureScreen() {
   const [isEnabled, setIsEnabled] = useState(false);

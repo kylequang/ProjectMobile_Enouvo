@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TopTabNavigator from './TopTabNavigator';
 import CentresScreen from '../screens/centres/CentresScreen';
@@ -28,5 +27,3 @@ const CentresStackNavigator = () => {
 };
 
 export default CentresStackNavigator;
-
-const styles = StyleSheet.create({});
