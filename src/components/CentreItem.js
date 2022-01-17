@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-
+import { useNavigation } from '@react-navigation/core';
 const CentreItem = ({
+  onPress,
   img,
   number,
   logo,
@@ -14,71 +15,80 @@ const CentreItem = ({
   waitlistText,
   serviceText,
 }) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.mainCard}>
-      <View>
-        <Image source={img} style={styles.img} />
-        <View style={styles.imgNumber}>
-          <Text style={styles.numberText}>{number}</Text>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Centre Details', { screen: 'Summary' })
+      }
+    >
+      <View style={styles.mainCard}>
+        <View>
+          <Image source={img} style={styles.img} />
+          <View style={styles.imgNumber}>
+            <Text style={styles.numberText}>{number}</Text>
+          </View>
+          <View style={styles.logoImg}>
+            <Image source={logo} />
+          </View>
         </View>
-        <View style={styles.logoImg}>
-          <Image source={logo} />
+        <View style={styles.mainContent}>
+          <Text style={styles.mainTitle}>{title}</Text>
+          <View style={styles.mainText}>
+            <Image
+              source={require('../../assets/icons/ic-map.png')}
+              style={styles.icon}
+            />
+            <Text style={styles.mainSub}>{mapText}</Text>
+          </View>
+          <View style={[styles.mainText, { justifyContent: 'space-between' }]}>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={require('../../assets/icons/ic-baby.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.mainSub}>{babyText}</Text>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={require('../../assets/icons/ic-wailist.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.mainSub}>{waitlistText}</Text>
+            </View>
+          </View>
+          <View
+            style={[
+              styles.mainText,
+              {
+                justifyContent: 'space-between',
+              },
+            ]}
+          >
+            <View style={{ flexDirection: 'row' }}>
+              <Image source={require('../../assets/icons/ic-kincare.png')} />
+              <TouchableOpacity
+                style={[styles.kindiCareButton, { backgroundColor }]}
+                // onPress={()=>()}
+              >
+                <Text style={[styles.kindiCareText, { color }]}>
+                  {kindiText}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={require('../../assets/icons/ic-service.png')}
+                style={styles.icon}
+              />
+              <Text style={[styles.mainSub, { marginRight: 15 }]}>
+                {serviceText}
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
-      <View style={styles.mainContent}>
-        <Text style={styles.mainTitle}>{title}</Text>
-        <View style={styles.mainText}>
-          <Image
-            source={require('../../assets/icons/ic-map.png')}
-            style={styles.icon}
-          />
-          <Text style={styles.mainSub}>{mapText}</Text>
-        </View>
-        <View style={[styles.mainText, { justifyContent: 'space-between' }]}>
-          <View style={{ flexDirection: 'row' }}>
-            <Image
-              source={require('../../assets/icons/ic-baby.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.mainSub}>{babyText}</Text>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <Image
-              source={require('../../assets/icons/ic-wailist.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.mainSub}>{waitlistText}</Text>
-          </View>
-        </View>
-        <View
-          style={[
-            styles.mainText,
-            {
-              justifyContent: 'space-between',
-            },
-          ]}
-        >
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={require('../../assets/icons/ic-kincare.png')} />
-            <TouchableOpacity
-              style={[styles.kindiCareButton, { backgroundColor }]}
-              // onPress={()=>()}
-            >
-              <Text style={[styles.kindiCareText, { color }]}>{kindiText}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <Image
-              source={require('../../assets/icons/ic-service.png')}
-              style={styles.icon}
-            />
-            <Text style={[styles.mainSub, { marginRight: 15 }]}>
-              {serviceText}
-            </Text>
-          </View>
-        </View>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

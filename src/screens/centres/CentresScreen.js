@@ -44,8 +44,8 @@ export default function CentresScreen() {
     return (
       <SelectItem
         item={item}
-        // onPress={() => setSelectedId(item.id)}
-        onPress={() => navigateToDetail(item.id)}
+        onPress={() => setSelectedId(item.id)}
+        // onPress={() => navigateToDetail(item.id)}
         backgroundColor={{ backgroundColor }}
         color={color}
         icon={icon}
@@ -108,6 +108,7 @@ export default function CentresScreen() {
           {CENTRE_DATA.map((item) => {
             return (
               <CentreItem
+                onPress={() => navigateToDetail(id)}
                 img={item.img}
                 number={item.number}
                 logo={item.logo}

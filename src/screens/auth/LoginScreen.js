@@ -11,7 +11,6 @@ import {
   Image,
   SafeAreaView,
   StatusBar,
-  ScrollView,
 } from 'react-native';
 import { auth } from '../../../src/database/firebase';
 
@@ -37,7 +36,6 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);
-        // alert('You registered successfully with ' + user.email);
       })
       .catch((error) => alert(error.message));
   };
@@ -48,13 +46,12 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
-        // alert('You login successfully with ' + user.email);
       })
       .catch((error) => alert(error.message));
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <SafeAreaView style={styles.container} behavior="padding">
       <Image
         style={{ width: 100, height: 100 }}
         source={require('../../../assets/logo/logo.png')}
@@ -110,7 +107,7 @@ const LoginScreen = () => {
           </Text>
         </Text>
       </View>
-    </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
