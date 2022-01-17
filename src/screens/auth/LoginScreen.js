@@ -51,62 +51,64 @@ const LoginScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container} behavior="padding">
-      <Image
-        style={{ width: 100, height: 100 }}
-        source={require('../../../assets/logo/logo.png')}
-      />
-      <View style={styles.inputContainer}>
-        <View style={styles.input}>
-          <Text>Email</Text>
-          <TextInput
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-          />
+    <SafeAreaView style={styles.loginConatiner}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <Image
+          style={{ width: 100, height: 100 }}
+          source={require('../../../assets/logo/logo.png')}
+        />
+        <View style={styles.inputContainer}>
+          <View style={styles.input}>
+            <Text>Email</Text>
+            <TextInput
+              placeholder="Enter your email"
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
+          <View style={styles.input}>
+            <Text>Password</Text>
+            <TextInput
+              placeholder="Enter your password"
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry={hidePass ? true : false}
+            />
+            <Ionicons
+              style={styles.iconPass}
+              name={hidePass ? 'ios-eye-off-outline' : 'ios-eye-outline'}
+              size={20}
+              color="grey"
+              onPress={() => setHidePass(!hidePass)}
+            />
+          </View>
+          <TouchableOpacity
+            style={styles.forgotButton}
+            onPress={() => navigation.navigate('ForgotPassword')}
+          >
+            <Text style={styles.forgotText}>Forgot password?</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.input}>
-          <Text>Password</Text>
-          <TextInput
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-            secureTextEntry={hidePass ? true : false}
-          />
-          <Ionicons
-            style={styles.iconPass}
-            name={hidePass ? 'ios-eye-off-outline' : 'ios-eye-outline'}
-            size={20}
-            color="grey"
-            onPress={() => setHidePass(!hidePass)}
-          />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={handleLogin} style={styles.button}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleSignUp}
+            style={[styles.button, styles.buttonOutline]}
+          >
+            <Text style={styles.buttonOutlineText}>Register</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.forgotButton}
-          onPress={() => navigation.navigate('ForgotPassword')}
-        >
-          <Text style={styles.forgotText}>Forgot password?</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleSignUp}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Register</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ position: 'absolute', bottom: 30 }}>
-        <Text style={{ textAlign: 'center' }}>
-          If you have trouble logging in to KindiCare CRM,{'\n'}
-          <Text style={{ color: '#DB147F' }}>
-            please contact our Customer Care team.
+        <View style={styles.bottomContainer}>
+          <Text style={{ textAlign: 'center' }}>
+            If you have trouble logging in to KindiCare CRM,{'\n'}
+            <Text style={{ color: '#DB147F' }}>
+              please contact our Customer Care team.
+            </Text>
           </Text>
-        </Text>
-      </View>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -114,6 +116,11 @@ const LoginScreen = () => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+  loginConatiner: {
+    flex: 1,
+    // paddingTop: 160,
+    paddingTop: StatusBar.currentHeight,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -169,5 +176,9 @@ const styles = StyleSheet.create({
   },
   forgotText: {
     color: '#DB147F',
+  },
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 30,
   },
 });

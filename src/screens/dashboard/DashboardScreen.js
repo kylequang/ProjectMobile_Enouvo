@@ -172,5 +172,6 @@ const styles = StyleSheet.create({
   styleText: {
     fontSize: 16,
     fontWeight: '400',
+    color: '#2D1F21',
   },
 });

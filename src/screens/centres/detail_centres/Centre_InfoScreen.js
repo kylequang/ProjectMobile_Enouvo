@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     color: '#2D1F21',
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Mulish',
   },
   divider: {
     marginTop: 10,
@@ -73,7 +72,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.02,
     color: '#2D1F21',
     alignSelf: 'stretch',
-    fontFamily: 'Mulish',
   },
   seeMore: {
     color: '#DB147F',
@@ -92,7 +90,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 0.02,
     color: '#2D1F21',
-    fontFamily: 'Mulish',
   },
   add2: {
     width: '55%',
@@ -102,6 +99,5 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 0.02,
     color: '#2D1F21',
-    fontFamily: 'Mulish',
   },
 });
