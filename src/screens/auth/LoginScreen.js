@@ -10,10 +10,12 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  Dimensions,
   StatusBar,
   ScrollView,
 } from 'react-native';
 import { auth } from '../../../src/database/firebase';
+
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -54,7 +56,8 @@ const LoginScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <View behavior="padding" style={styles.container}>
+
       <Image
         style={{ width: 100, height: 100 }}
         source={require('../../../assets/logo/logo.png')}
@@ -102,15 +105,12 @@ const LoginScreen = () => {
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
       </View>
-      <View style={{ position: 'absolute', bottom: 30 }}>
-        <Text style={{ textAlign: 'center' }}>
-          If you have trouble logging in to KindiCare CRM,{'\n'}
-          <Text style={{ color: '#DB147F' }}>
-            please contact our Customer Care team.
-          </Text>
-        </Text>
+
+      <View>
+        <Text style={styles.contextFooter}>If you have trouble logging in to KindiCare CRM,{'\n'} please contact our Customer Care team. </Text>
       </View>
-    </KeyboardAvoidingView>
+    </View>
+
   );
 };
 
@@ -173,4 +173,15 @@ const styles = StyleSheet.create({
   forgotText: {
     color: '#DB147F',
   },
+  contextFooter: {
+    position: 'absolute',
+    top: 140,
+    left: -150,
+    alignItems: 'flex-end',
+    textAlign: 'center',
+    letterSpacing: 0.02,
+    fontSize: 14,
+    lineHeight: 24
+  },
 });
+

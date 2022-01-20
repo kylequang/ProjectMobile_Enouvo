@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import CircleBorder from './CircleBorder';
 
-const CentreSliderItem = ({ icon, textTitle, total, ellipseColor }) => {
+const CentreSliderItem = ({icon, textTitle, total, ellipseColor }) => {
   return (
-    <View style={styles.sliderCard}>
+    <View style={styles.sliderCard} >
       <View style={styles.row}>
         <CircleBorder
           size={40}

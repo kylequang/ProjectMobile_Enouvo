@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { db } from '../../database/firebase';
-import { collection, getDocs } from "firebase/firestore";
+
 import {
   View,
   Text,
@@ -18,34 +17,32 @@ import {
 import { Divider } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../../components/Header';
-import CircleBorder from '../../components/CircleBorder';
 import Item from '../../components/Item';
 import { CENTRE_DATA } from '../../services/centre';
 import { SLIDER_DATA } from '../../services/slideCenter';
 import CentreItem from '../../components/CentreItem';
 import CentreSliderItem from '../../components/CentreSliderItem';
+import { getAllCentres, getAllNameofCentre } from '../../services/getData';
 export default function CentresScreen() {
   const [search, setSearch] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const navigation = useNavigation();
-
   const [centers, setCenters] = useState([]);
 
-  useEffect(() => {
+  useEffect(async () => {
     LogBox.ignoreLogs(['Setting a timer']);
-    const getCentres = async () => {
-      const data = await getDocs(collection(db, 'Centres'));
-      setCenters(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getCentres();
+    setCenters(await getAllCentres())
+    console.log( await getAllNameofCentre())
   }, []);
 
   const renderItem = ({ item }) => {
+    const center=item
     const navigateToDetail = (id) => {
       setSelectedId(id);
       setModalVisible(false);
-      navigation.navigate('Centre Details', { screen: 'Summary' });
+     
+      navigation.navigate('Centre Details', { item})
     };
     const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff';
     const color = item.id === selectedId ? '#DB147F' : '#ACB2B8';
@@ -75,12 +72,13 @@ export default function CentresScreen() {
           marginRight={170}
           onPress={() => setModalVisible(true)}
         />
+
         <View style={styles.sliderContainer}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {SLIDER_DATA.map((item, id) => {
               return (
                 <CentreSliderItem
-                  id={id}
+                  key={id}
                   icon={item.icon}
                   textTitle={item.textTitle}
                   total={item.total}
@@ -121,7 +119,7 @@ export default function CentresScreen() {
           {
             centers && centers.map((center, id) => {
               return (
-                <CentreItem center={center} id={id} />
+                <CentreItem center={center} key={id} />
               )
             })
           }
@@ -183,7 +181,8 @@ export default function CentresScreen() {
                 }}
               >
                 <FlatList
-                  data={CENTRE_DATA}
+                  // data={CENTRE_DATA}
+                  data={centers}
                   renderItem={renderItem}
                   keyExtractor={(item) => item.id}
                   extraData={selectedId}
