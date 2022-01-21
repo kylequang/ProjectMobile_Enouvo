@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
   contextFooter: {
     position: 'absolute',
-    top: 140,
+    top: 100,
     left: -150,
     alignItems: 'flex-end',
     textAlign: 'center',

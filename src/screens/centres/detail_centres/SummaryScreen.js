@@ -33,11 +33,13 @@ export default function SummaryScreen(props) {
           <View style={styles.informContainer}>
             <View style={styles.informContent}>
               <Image
-                source={require('../../../../assets/images/centres/centre1.png')}
+                source={{ uri: props.center.image }}
+                style={styles.img}
               />
               <View style={styles.goodStartText}>
                 <Text style={styles.text}>
-                  Goodstart Early{'\n'}Learning ABC
+                  {props.center.name}
+                  {/* Goodstart Early{'\n'}Learning ABC */}
                 </Text>
                 <View style={styles.row}>
                   <Entypo name="dot-single" size={20} color="#36BF57" />
@@ -145,6 +147,12 @@ const styles = StyleSheet.create({
   scrollView: {
     marginHorizontal: 25,
   },
+  img: {
+    width: '50%',
+    height: 100,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+},
   text: {
     fontSize: 16,
     fontWeight: 'bold',
@@ -152,9 +160,9 @@ const styles = StyleSheet.create({
   },
   containerContent: {
     borderRadius: 12,
-    marginVertical: 5,
+    marginVertical: 1,
     backgroundColor: '#FFFFFF',
-    padding: 16,
+    padding: 10,
     borderWidth: 1,
     borderColor: '#F2F0F0',
   },
@@ -166,8 +174,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   goodStartText: {
-    marginLeft: 10,
-    marginTop: 12,
+    marginLeft: 5,
+    marginTop: 8,
+    width:'40%'
   },
   informContent: {
     flexDirection: 'row',

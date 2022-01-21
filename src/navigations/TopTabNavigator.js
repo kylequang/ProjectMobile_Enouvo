@@ -13,6 +13,10 @@ const TabCentre = createMaterialTopTabNavigator();
 
 const TopTabNavigator = ({ route, navigation }) => {
 
+  const [center,setCenter]=useState([]);
+
+  const [img,setImg]=useState();
+
   const [geInfo, setInfo] = useState([]);
   const [contact, setContact] = useState([]);
   const [enquiries, setEnquiries] = useState([]);
@@ -22,6 +26,10 @@ const TopTabNavigator = ({ route, navigation }) => {
 
   useEffect(() => {
     const { center } = route.params;
+
+    setCenter(center);
+    setImg(center.image);
+
     setInfo(center.General_Infor);
     setContact(center.Contact_Infor);
     setEnquiries(center.Enquiries_Sum);
@@ -42,7 +50,7 @@ const TopTabNavigator = ({ route, navigation }) => {
     >
       <TabCentre.Screen
         name="Summary"
-        children={() => <SummaryScreen info={geInfo} contact={contact} enquiries={enquiries} />}
+        children={() =><SummaryScreen center={center} avatar={img} info={geInfo} contact={contact} enquiries={enquiries} />}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity

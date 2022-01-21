@@ -1,4 +1,4 @@
-import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../src/database/firebase';
 
 export const getAllCentres = async () => {

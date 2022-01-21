@@ -105,8 +105,7 @@ const styles = StyleSheet.create({
     mainCard: {
         backgroundColor: '#FFFFFF',
         borderRadius: 12,
-        marginTop: 20,
-    },
+            },
     img: {
         width: '100%',
         height: 100,

@@ -1,11 +1,11 @@
 export const SLIDER_DATA = [
-    {
-      id: 1,
-      icon: require('../../assets/icons/ic-centre.png'),
-      textTitle: 'Total Centres',
-      total: '122',
-      ellipseColor: '#FFF0FB',
-    },
+    // {
+    //   id: 1,
+    //   icon: require('../../assets/icons/ic-centre.png'),
+    //   textTitle: 'Total Centres',
+    //   total: '122',
+    //   ellipseColor: '#FFF0FB',
+    // },
     {
       id: 2,
       icon: require('../../assets/icons/ic-map-pin.png'),

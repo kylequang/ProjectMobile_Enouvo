@@ -18,11 +18,10 @@ import { Divider } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../../components/Header';
 import Item from '../../components/Item';
-import { CENTRE_DATA } from '../../services/centre';
 import { SLIDER_DATA } from '../../services/slideCenter';
 import CentreItem from '../../components/CentreItem';
 import CentreSliderItem from '../../components/CentreSliderItem';
-import { getAllCentres, getAllNameofCentre } from '../../services/getData';
+import { getAllCentres } from '../../services/getData';
 export default function CentresScreen() {
   const [search, setSearch] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -33,16 +32,15 @@ export default function CentresScreen() {
   useEffect(async () => {
     LogBox.ignoreLogs(['Setting a timer']);
     setCenters(await getAllCentres())
-    console.log( await getAllNameofCentre())
   }, []);
 
   const renderItem = ({ item }) => {
-    const center=item
+    const center = item
     const navigateToDetail = (id) => {
       setSelectedId(id);
       setModalVisible(false);
-     
-      navigation.navigate('Centre Details', { item})
+
+      navigation.navigate('Centre Details', { item })
     };
     const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff';
     const color = item.id === selectedId ? '#DB147F' : '#ACB2B8';
@@ -75,6 +73,14 @@ export default function CentresScreen() {
 
         <View style={styles.sliderContainer}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <CentreSliderItem
+              key={1}
+              icon={require('../../../assets/icons/ic-centre.png')}
+              textTitle='Total Centres'
+              total={centers.length}
+              ellipseColor= '#FFF0FB'
+             
+            />
             {SLIDER_DATA.map((item, id) => {
               return (
                 <CentreSliderItem
@@ -180,13 +186,15 @@ export default function CentresScreen() {
                   borderRadius: 8,
                 }}
               >
-                <FlatList
-                  // data={CENTRE_DATA}
-                  data={centers}
-                  renderItem={renderItem}
-                  keyExtractor={(item) => item.id}
-                  extraData={selectedId}
-                />
+                {
+                  centers ? <FlatList
+                    data={centers}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    extraData={selectedId}
+                  /> : ''
+                }
+
               </View>
             </View>
           </View>
@@ -269,8 +277,8 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
     position: 'relative',
+
     bottom: 560,
     width: '100%',
   },
