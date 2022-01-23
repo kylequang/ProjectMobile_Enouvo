@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import {
-  Modal,
-  TouchableOpacity,
   StyleSheet,
-  Text,
   View,
-  Switch,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+
+import CardMarketing from '../../../components/CardMarketing';
+import ModalMarketing from '../../../components/ModalMarketing';
 
 export default function MarketingScreen() {
   const [isEnabledSpec, setIsEnabledSpec] = useState(false);
@@ -19,68 +16,20 @@ export default function MarketingScreen() {
   const [specModalVisible, setModalVisibleSpec] = useState(false);
   return (
     <View style={styles.container}>
-      <View style={styles.block}>
-        <View style={styles.leftContent}>
-          <View style={styles.header}>
-            <Text style={styles.title}>Featured Listing</Text>
-            <TouchableOpacity>
-              <Ionicons
-                name="information-circle-sharp"
-                size={14}
-                color={'#857E7F'}
-                onPress={() => setModalVisibleFeat(true)}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.money}>
-            <Text style={{ fontSize: 20, fontWeight: '700', lineHeight: 32 }}>
-              $50
-            </Text>
-
-            <Text style={{ fontWeight: '400' }}>/per month</Text>
-          </Text>
-        </View>
-        <Switch
-          style={styles.toggleSwitch}
-          trackColor={{ false: '#F7F8F9', true: '#DB147F' }}
-          thumbColor={'#ffff'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={featSwitch}
-          value={isEnabledFeat}
-        />
-      </View>
-      <View style={styles.block}>
-        <View style={styles.leftContent}>
-          <View style={styles.header}>
-            <Text style={styles.title}>Special Offer</Text>
-            <TouchableOpacity>
-              <Ionicons
-                name="information-circle-sharp"
-                size={14}
-                color={'#857E7F'}
-                onPress={() => setModalVisibleSpec(true)}
-              />
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.money}>
-            <Text style={{ fontSize: 20, fontWeight: '700', lineHeight: 32 }}>
-              $30
-            </Text>
-            <Text style={{ fontWeight: '400' }}>/per month</Text>
-          </Text>
-        </View>
-        <Switch
-          style={styles.toggleSwitch}
-          trackColor={{ false: '#F7F8F9', true: '#DB147F' }}
-          thumbColor={'#ffff'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={specSwitch}
-          value={isEnabledSpec}
-        />
-      </View>
+       <CardMarketing title='Featured Listing' 
+      func={() => setModalVisibleFeat(true)}
+      money='$50'
+      specSwitch={featSwitch}
+      isEnabledSpec={isEnabledFeat}>
+      </CardMarketing>
+      <CardMarketing title='Special Offer' 
+      func={() => setModalVisibleSpec(true)}
+      money='$30'
+      specSwitch={specSwitch}
+      isEnabledSpec={isEnabledSpec}>
+      </CardMarketing>
       <View>
-        <Modal visible={featModalVisible} transparent={true}>
+        {/* <Modal visible={featModalVisible} transparent={true}>
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
               <View style={styles.modalH}>
@@ -113,8 +62,8 @@ export default function MarketingScreen() {
               </Text>
             </View>
           </View>
-        </Modal>
-        <Modal visible={specModalVisible} transparent={true}>
+        </Modal> */}
+        {/* <Modal visible={specModalVisible} transparent={true}>
           <View style={styles.modalView}>
             <View style={styles.modalHeader}>
               <View style={styles.modalH}>
@@ -147,7 +96,16 @@ export default function MarketingScreen() {
               </Text>
             </View>
           </View>
-        </Modal>
+        </Modal> */}
+      <ModalMarketing title='Featured Listing' 
+      func={() => setModalVisibleFeat(!featModalVisible)}
+      visible={featModalVisible}
+      content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo
+        erat tempor scelerisque sit adipiscing velit."></ModalMarketing>
+        <ModalMarketing title='Special Offer' 
+      func={() => setModalVisibleSpec(!specModalVisible)}
+      visible={specModalVisible}
+      content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></ModalMarketing>
       </View>
     </View>
   );
@@ -156,54 +114,52 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
   },
-   block: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#ffff',
-    marginHorizontal: 20,
-    marginVertical: 8,
-    padding: 16,
-    borderRadius: 12,
-  },
-  header: {
-    flexDirection: 'row',
-  },
-  title: {
-    fontWeight: '700',
-    fontSize: 14,
-    lineHeight: 24,
-  },
-  leftContent: {
-    color: '#2D1F21',
-  },
-  modalView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 'auto',
-    backgroundColor: '#ffff',
-    borderTopRightRadius: 12,
-    borderTopLeftRadius: 12,
-  },
-  modalHeader: {
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    paddingHorizontal: 19.75,
-    alignItems: 'center',
-  },
-  modalH: {
-    paddingLeft: '30%',
-  },
-  modalTitle: {
-    fontWeight: '700',
-    fontSize: 18,
-    lineHeight: 24,
-    paddingVertical: 20,
-  },
-  modalText: {
-    padding: 16,
-    paddingBottom: 40,
-  },
+  //  block: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  //   backgroundColor: '#ffff',
+  //   marginHorizontal: 20,
+  //   marginVertical: 8,
+  //   padding: 16,
+  //   borderRadius: 12,
+  // },
+  // header: {
+  //   flexDirection: 'row',
+  // },
+  // title: {
+  //   fontWeight: '700',
+  //   fontSize: 14,
+  //   lineHeight: 24,
+  // },
+ 
+  // modalView: {
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginTop: 'auto',
+  //   backgroundColor: '#ffff',
+  //   borderTopRightRadius: 12,
+  //   borderTopLeftRadius: 12,
+  // },
+  // modalHeader: {
+  //   width: '100%',
+  //   flexDirection: 'row',
+  //   flexWrap: 'wrap',
+  //   justifyContent: 'space-between',
+  //   paddingHorizontal: 19.75,
+  //   alignItems: 'center',
+  // },
+  // modalH: {
+  //   paddingLeft: '30%',
+  // },
+  // modalTitle: {
+  //   fontWeight: '700',
+  //   fontSize: 18,
+  //   lineHeight: 24,
+  //   paddingVertical: 20,
+  // },
+  // modalText: {
+  //   padding: 16,
+  //   paddingBottom: 40,
+  // },
 });
