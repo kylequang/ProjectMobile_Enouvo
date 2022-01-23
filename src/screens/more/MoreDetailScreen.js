@@ -9,13 +9,14 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import MoreData from "../../database/mock-data/MoreData";
 
 const MoreDetailScreen = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   return (
-    <SafeAreaView style={styles.container}>
+   
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -56,74 +57,16 @@ const MoreDetailScreen = () => {
         </View>
 
         <View style={styles.block}>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>About us</Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>About Kindicare application</Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>
-              The Kindicare Rating Explained
-            </Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>
-              About the National Quality Standard (NQS)
-            </Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>
-              The Value for Money Rating Explained
-            </Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>
-              About the Government Childcare Subsidy
-            </Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>FAQ</Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>Term & Conditions</Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>Privacy Policy</Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.BtnItem}>
-            <Text style={styles.leftContent}>Feedback & Support</Text>
-            <View style={styles.rightContent}>
-              <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-            </View>
-          </TouchableOpacity>
+          {MoreData.map((items) => {
+            return (
+              <TouchableOpacity key={items.id} style={styles.BtnItem}>
+                <Text style={styles.leftContent}>{items.title}</Text>
+                <View style={styles.rightContent}>
+                  <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </View>
         <View style={styles.footer}>
           <TouchableOpacity style={styles.BtnItem}>
@@ -134,18 +77,14 @@ const MoreDetailScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </SafeAreaView>
+   
   );
 };
 export default MoreDetailScreen;
 const styles = StyleSheet.create({
-  container: {
-    marginTop: -25,
-    flex: 1,
-  },
   scrollView: {
     backgroundColor: "#F7F8F9",
-  },
+    },
 
   BtnItem: {
     flexDirection: "row",

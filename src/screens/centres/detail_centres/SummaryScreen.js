@@ -74,7 +74,7 @@ export default function SummaryScreen(props) {
               <Text style={styles.text}>General Information</Text>
               {
                 props.info.map((item) => (
-                  <View style={styles.generalInform}>
+                  <View key={item.id} style={styles.generalInform}>
                     <FontAwesome5 name={item.icon} size={20} color="#DB147F" />
                     <Text style={styles.informText}>
                       {item.name}

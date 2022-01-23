@@ -18,7 +18,7 @@ export default function MarketingScreen() {
   const [featModalVisible, setModalVisibleFeat] = useState(false);
   const [specModalVisible, setModalVisibleSpec] = useState(false);
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.block}>
         <View style={styles.leftContent}>
           <View style={styles.header}>
@@ -149,20 +149,20 @@ export default function MarketingScreen() {
           </View>
         </Modal>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  container:{
+    flex:1,
   },
-  block: {
+   block: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#ffff',
     marginHorizontal: 20,
-    marginBottom: 16,
+    marginVertical: 8,
     padding: 16,
     borderRadius: 12,
   },
