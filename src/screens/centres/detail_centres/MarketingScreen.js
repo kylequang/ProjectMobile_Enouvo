@@ -15,6 +15,7 @@ export default function MarketingScreen(props) {
       setModalVisibleSpec(true);
     }
   };
+
   return (
     <View style={styles.container}>
       {props.marketing.map((item, key) => {
@@ -42,7 +43,8 @@ export default function MarketingScreen(props) {
         }
         if (key === 1) {
           return (
-            <ModalMarketing key={key}
+            <ModalMarketing
+              key={key}
               title={item.name}
               func={() => setModalVisibleSpec(!specModalVisible)}
               visible={specModalVisible}

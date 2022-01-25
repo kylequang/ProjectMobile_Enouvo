@@ -18,3 +18,12 @@ export const getAllDashboard = async () => {
     });
     return data;
 }
+
+export const getAllMore = async () => {
+    const data = [];
+    const querySnapshot = await getDocs(collection(db, "More"));
+    querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+    });
+    return data;
+}
