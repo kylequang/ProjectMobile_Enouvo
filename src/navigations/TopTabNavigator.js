@@ -22,6 +22,7 @@ const TopTabNavigator = ({ route, navigation }) => {
   const [enquiries, setEnquiries] = useState([]);
   const [feature, setFeature] = useState([]);
   const [service, setService] = useState([]);
+  const [marketing, setMarketing] = useState([]);
   const [add, setAdd] = useState([]);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const TopTabNavigator = ({ route, navigation }) => {
     setEnquiries(center.Enquiries_Sum);
     setFeature(center.Features);
     setService(center.Services);
+    setMarketing(center.Marketting);
     setAdd(center.Additional_Details);
 
   }, []);
@@ -190,7 +192,7 @@ const TopTabNavigator = ({ route, navigation }) => {
       />
       <TabCentre.Screen
         name="Marketing"
-        component={MarketingScreen}
+        children={() => <MarketingScreen marketing={marketing}/>}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity

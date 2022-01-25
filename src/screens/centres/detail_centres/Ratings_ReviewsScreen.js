@@ -149,8 +149,8 @@ const Ratings_ReviewsScreen = () => {
             )}
           </CardRateDetail>
         )}
-        <View style={styles.modalView}>
-        <Modal visible={modalVisible} style={styles.modalView}>
+
+        <Modal visible={modalVisible}>
           <Ionicons
             name="md-close-outline"
             size={24}
@@ -159,17 +159,16 @@ const Ratings_ReviewsScreen = () => {
             style={styles.modalIcon}
           />
           <View style={styles.imgModalView}>
-          <Image
-            resizeMode="stretch"
-            style={styles.imgModal}
-            source={{
-              uri: `${modalImage}`,
-            }}
-          />
+            <Image
+              resizeMode="stretch"
+              style={styles.imgModal}
+              source={{
+                uri: `${modalImage}`,
+              }}
+            />
           </View>
-          
         </Modal>
-        </View>
+
         {card3 ? (
           <TouchableOpacity onPress={() => dropDown3()}>
             <CardRate
@@ -320,25 +319,12 @@ const styles = StyleSheet.create({
   imgModal: {
     width: 400,
     height: 400,
-  
-  
   },
-  modalView:{
+
+  imgModalView: {
     flex: 1,
-    //backgroundColor: 'transparent',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "rgba(0,0,0,0.7)",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  imgModalView:{
-    // flex:1,
-    
-    // justifyContent:"center",
-    // alignItems:"center",
-    flex: 1,
-    //backgroundColor: 'transparent',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
 });

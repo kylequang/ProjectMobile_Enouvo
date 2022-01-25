@@ -17,7 +17,7 @@ const CardMarketing = ({ title, func, money, specSwitch, isEnabledSpec }) => {
           </TouchableOpacity>
         </View>
         <Text>
-          <Text style={styles.moneyLeft}>{money}</Text>
+          <Text style={styles.moneyLeft}>${money}</Text>
           <Text style={styles.moneyRight}>/per month</Text>
         </Text>
       </View>
@@ -26,7 +26,6 @@ const CardMarketing = ({ title, func, money, specSwitch, isEnabledSpec }) => {
         trackColor={{ false: "#F7F8F9", true: "#DB147F" }}
         thumbColor={"#ffff"}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={specSwitch}
         value={isEnabledSpec}
       />
     </View>
