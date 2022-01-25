@@ -9,3 +9,12 @@ export const getAllCentres = async () => {
     });
     return data;
 }
+
+export const getAllDashboard = async () => {
+    const data = [];
+    const querySnapshot = await getDocs(collection(db, "Dashboard"));
+    querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+    });
+    return data;
+}
