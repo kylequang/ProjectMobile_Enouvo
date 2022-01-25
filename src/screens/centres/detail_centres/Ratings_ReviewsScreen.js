@@ -6,7 +6,9 @@ import {
   View,
   ScrollView,
   Image,
+  Modal,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { Rating } from "react-native-ratings";
 import CardRate from "../../../components/CardRate";
 import CardRateDetail from "../../../components/CardRateDetail";
@@ -17,6 +19,10 @@ const Ratings_ReviewsScreen = () => {
   const [card1, setCard1] = useState(true);
   const [card2, setCard2] = useState(true);
   const [card3, setCard3] = useState(true);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalImage, setModalImage] = useState("");
+
   const dropDown1 = () => {
     if (card1) {
       setCard1(false);
@@ -37,6 +43,11 @@ const Ratings_ReviewsScreen = () => {
     } else {
       setCard3(true);
     }
+  };
+
+  const openSettingsModal = (items) => {
+    setModalImage(items);
+    setModalVisible(!modalVisible);
   };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -116,14 +127,19 @@ const Ratings_ReviewsScreen = () => {
                     <View style={styles.imgView}>
                       {img.map((items) => {
                         return (
-                          <View style={styles.imgItem}>
+                          <TouchableOpacity
+                            style={styles.imgItem}
+                            onPress={() => {
+                              openSettingsModal(items);
+                            }}
+                          >
                             <Image
                               style={styles.imgStyle}
                               source={{
                                 uri: `${items}`,
                               }}
                             />
-                          </View>
+                          </TouchableOpacity>
                         );
                       })}
                     </View>
@@ -133,7 +149,27 @@ const Ratings_ReviewsScreen = () => {
             )}
           </CardRateDetail>
         )}
-
+        <View style={styles.modalView}>
+        <Modal visible={modalVisible} style={styles.modalView}>
+          <Ionicons
+            name="md-close-outline"
+            size={24}
+            color={"#2D1F21"}
+            onPress={() => setModalVisible(false)}
+            style={styles.modalIcon}
+          />
+          <View style={styles.imgModalView}>
+          <Image
+            resizeMode="stretch"
+            style={styles.imgModal}
+            source={{
+              uri: `${modalImage}`,
+            }}
+          />
+          </View>
+          
+        </Modal>
+        </View>
         {card3 ? (
           <TouchableOpacity onPress={() => dropDown3()}>
             <CardRate
@@ -281,4 +317,28 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 8,
   },
+  imgModal: {
+    width: 400,
+    height: 400,
+  
+  
+  },
+  modalView:{
+    flex: 1,
+    //backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imgModalView:{
+    // flex:1,
+    
+    // justifyContent:"center",
+    // alignItems:"center",
+    flex: 1,
+    //backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
