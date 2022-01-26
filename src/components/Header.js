@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 const Header = ({
   iconName,
   title,
@@ -10,6 +10,7 @@ const Header = ({
   marginRight,
   onPress,
 }) => {
+  const navigation = useNavigation()
   return (
     <View style={styles.header}>
       <View style={styles.contentHeader}>
@@ -22,18 +23,24 @@ const Header = ({
           style={{ marginTop: 4, marginRight }}
           onPress={onPress}
         />
-        <MaterialIcons
-          name={iconLeft}
-          size={24}
-          color="#fff"
-          style={{ marginTop: 4 }}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Add Centre')
+          }}
+        >
+          <MaterialIcons
+            name={iconLeft}
+            size={24}
+            color="#fff"
+            style={{ marginTop: 4 }}
+          />
+        </TouchableOpacity>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
 
 const styles = StyleSheet.create({
   header: {
@@ -56,7 +63,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     marginTop: 5,
-    // marginLeft
-    // marginLeft: -35,
   },
-});
+})

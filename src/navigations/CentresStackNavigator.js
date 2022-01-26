@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TopTabNavigator from './TopTabNavigator';
 import CentresScreen from '../screens/centres/CentresScreen';
-
+import CreateCentreScreen from '../screens/centres/CreateCentreScreen';
 const CentreStack = createNativeStackNavigator();
 
 const CentresStackNavigator = () => {
@@ -23,6 +23,7 @@ const CentresStackNavigator = () => {
         options={{ headerShown: false }}
       />
       <CentreStack.Screen name="Centre Details" component={TopTabNavigator} />
+      <CentreStack.Screen name="Add Centre" component={CreateCentreScreen} />
     </CentreStack.Navigator>
   );
 };

@@ -34,11 +34,10 @@ const DashboardItem = ({ dashboard, id }) => {
           <Text style={styles.styleText}>{dashboard.value2}</Text>
         </View>
         <View style={styles.row}>
-        <View style={styles.containText3}>
-          <Text style={styles.styleText}>{dashboard.text3}</Text>
+          <View style={styles.containText3}>
+            <Text style={styles.styleText}>{dashboard.text3}</Text>
           </View>
-            <Text style={styles.styleText}>{dashboard.value3}</Text>
-          
+          <Text style={styles.styleText}>{dashboard.value3}</Text>
         </View>
       </View>
     </View>
@@ -90,7 +89,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
   },
-  containText3:{
-    flexDirection: 'row', flexWrap: 'wrap', width: '50%'
-  }
+  containText3: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '50%',
+  },
 })
