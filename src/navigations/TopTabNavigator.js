@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import SummaryScreen from '../screens/centres/detail_centres/SummaryScreen';
-import Centre_InfoScreen from '../screens/centres/detail_centres/Centre_InfoScreen';
-import HoursScreen from '../screens/centres/detail_centres/HoursScreen';
-import ServiceScreen from '../screens/centres/detail_centres/ServiceScreen';
-import FeatureScreen from '../screens/centres/detail_centres/FeatureScreen';
-import MarketingScreen from '../screens/centres/detail_centres/MarketingScreen';
-import Ratings_ReviewsScreen from '../screens/centres/detail_centres/Ratings_ReviewsScreen';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import SummaryScreen from "../screens/centres/detail_centres/SummaryScreen";
+import Centre_InfoScreen from "../screens/centres/detail_centres/Centre_InfoScreen";
+import HoursScreen from "../screens/centres/detail_centres/HoursScreen";
+import ServiceScreen from "../screens/centres/detail_centres/ServiceScreen";
+import FeatureScreen from "../screens/centres/detail_centres/FeatureScreen";
+import MarketingScreen from "../screens/centres/detail_centres/MarketingScreen";
+import Ratings_ReviewsScreen from "../screens/centres/detail_centres/Ratings_ReviewsScreen";
 
 const TabCentre = createMaterialTopTabNavigator();
 
 const TopTabNavigator = ({ route, navigation }) => {
+  const [center, setCenter] = useState([]);
 
-  const [center,setCenter]=useState([]);
-
-  const [img,setImg]=useState();
+  const [img, setImg] = useState();
 
   const [geInfo, setInfo] = useState([]);
   const [contact, setContact] = useState([]);
   const [enquiries, setEnquiries] = useState([]);
   const [feature, setFeature] = useState([]);
   const [service, setService] = useState([]);
+  const [marketing, setMarketing] = useState([]);
+  const [nqsrating, setNQSRating] = useState([]);
+  const [userReviews, setUserReviews] = useState([]);
   const [add, setAdd] = useState([]);
 
   useEffect(() => {
@@ -35,8 +37,10 @@ const TopTabNavigator = ({ route, navigation }) => {
     setEnquiries(center.Enquiries_Sum);
     setFeature(center.Features);
     setService(center.Services);
+    setMarketing(center.Marketting);
+    setNQSRating(center.NQSRating);
+    setUserReviews(center.UserReviews);
     setAdd(center.Additional_Details);
-
   }, []);
 
   return (
@@ -45,12 +49,20 @@ const TopTabNavigator = ({ route, navigation }) => {
       screenOptions={{
         tabBarScrollEnabled: true,
         tabBarShowLabel: false,
-        tabBarStyle: { backgroundColor: '#E5E5E5' },
+        tabBarStyle: { backgroundColor: "#E5E5E5" },
       }}
     >
       <TabCentre.Screen
         name="Summary"
-        children={() =><SummaryScreen center={center} avatar={img} info={geInfo} contact={contact} enquiries={enquiries} />}
+        children={() => (
+          <SummaryScreen
+            center={center}
+            avatar={img}
+            info={geInfo}
+            contact={contact}
+            enquiries={enquiries}
+          />
+        )}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity
@@ -59,15 +71,15 @@ const TopTabNavigator = ({ route, navigation }) => {
                 marginLeft: -40,
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                backgroundColor: focused ? '#fff' : '',
+                backgroundColor: focused ? "#fff" : "",
                 borderRadius: 6,
               }}
             >
               <Text
                 style={{
-                  color: focused ? '#e91e63' : '#857E7F',
+                  color: focused ? "#e91e63" : "#857E7F",
                   fontSize: 11,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 SUMMARY
@@ -87,15 +99,15 @@ const TopTabNavigator = ({ route, navigation }) => {
                 marginLeft: -68,
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                backgroundColor: focused ? '#fff' : '',
+                backgroundColor: focused ? "#fff" : "",
                 borderRadius: 6,
               }}
             >
               <Text
                 style={{
-                  color: focused ? '#e91e63' : '#857E7F',
+                  color: focused ? "#e91e63" : "#857E7F",
                   fontSize: 11,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 CENTRE INFORMATION
@@ -115,15 +127,15 @@ const TopTabNavigator = ({ route, navigation }) => {
                 marginLeft: -27,
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                backgroundColor: focused ? '#fff' : '',
+                backgroundColor: focused ? "#fff" : "",
                 borderRadius: 6,
               }}
             >
               <Text
                 style={{
-                  color: focused ? '#e91e63' : '#857E7F',
+                  color: focused ? "#e91e63" : "#857E7F",
                   fontSize: 11,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 HOURS
@@ -143,15 +155,15 @@ const TopTabNavigator = ({ route, navigation }) => {
                 marginLeft: -35,
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                backgroundColor: focused ? '#fff' : '',
+                backgroundColor: focused ? "#fff" : "",
                 borderRadius: 6,
               }}
             >
               <Text
                 style={{
-                  color: focused ? '#e91e63' : '#857E7F',
+                  color: focused ? "#e91e63" : "#857E7F",
                   fontSize: 11,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 SERVICES
@@ -171,15 +183,15 @@ const TopTabNavigator = ({ route, navigation }) => {
                 marginLeft: -37,
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                backgroundColor: focused ? '#fff' : '',
+                backgroundColor: focused ? "#fff" : "",
                 borderRadius: 6,
               }}
             >
               <Text
                 style={{
-                  color: focused ? '#e91e63' : '#857E7F',
+                  color: focused ? "#e91e63" : "#857E7F",
                   fontSize: 11,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 FEATURES
@@ -190,7 +202,9 @@ const TopTabNavigator = ({ route, navigation }) => {
       />
       <TabCentre.Screen
         name="Marketing"
-        component={MarketingScreen}
+        children={() => (
+          <MarketingScreen marketing={marketing}  />
+        )}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity
@@ -199,15 +213,15 @@ const TopTabNavigator = ({ route, navigation }) => {
                 marginLeft: -42,
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                backgroundColor: focused ? '#fff' : '',
+                backgroundColor: focused ? "#fff" : "",
                 borderRadius: 6,
               }}
             >
               <Text
                 style={{
-                  color: focused ? '#e91e63' : '#857E7F',
+                  color: focused ? "#e91e63" : "#857E7F",
                   fontSize: 11,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 MARKETING
@@ -218,7 +232,7 @@ const TopTabNavigator = ({ route, navigation }) => {
       />
       <TabCentre.Screen
         name="Rating Review"
-        component={Ratings_ReviewsScreen}
+        children={() => <Ratings_ReviewsScreen nqsrating={nqsrating} userReviews={userReviews}/>}
         options={{
           tabBarIcon: ({ focused }) => (
             <TouchableOpacity
@@ -227,15 +241,15 @@ const TopTabNavigator = ({ route, navigation }) => {
                 marginLeft: -47,
                 paddingHorizontal: 20,
                 paddingVertical: 5,
-                backgroundColor: focused ? '#fff' : '',
+                backgroundColor: focused ? "#fff" : "",
                 borderRadius: 6,
               }}
             >
               <Text
                 style={{
-                  color: focused ? '#e91e63' : '#857E7F',
+                  color: focused ? "#e91e63" : "#857E7F",
                   fontSize: 11,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 RATING REVIEW

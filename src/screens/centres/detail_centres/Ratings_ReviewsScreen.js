@@ -12,10 +12,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { Rating } from "react-native-ratings";
 import CardRate from "../../../components/CardRate";
 import CardRateDetail from "../../../components/CardRateDetail";
-import NQSRatingData from "../../../database/mock-data/rating-review/NQSRatingData";
-import UserReviews from "../../../database/mock-data/rating-review/UserReview";
 
-const Ratings_ReviewsScreen = () => {
+
+const Ratings_ReviewsScreen = (props) => {
   const [card1, setCard1] = useState(true);
   const [card2, setCard2] = useState(true);
   const [card3, setCard3] = useState(true);
@@ -94,7 +93,7 @@ const Ratings_ReviewsScreen = () => {
           </TouchableOpacity>
         ) : (
           <CardRateDetail title="User Reviews" onPress={dropDown2}>
-            {UserReviews.map(
+            {props.userReviews.map(
               ({ username, role, dateReview, avatar, comment, star, img }) => {
                 return (
                   <View style={styles.reviewView}>
@@ -149,8 +148,8 @@ const Ratings_ReviewsScreen = () => {
             )}
           </CardRateDetail>
         )}
-        <View style={styles.modalView}>
-        <Modal visible={modalVisible} style={styles.modalView}>
+
+        <Modal visible={modalVisible}>
           <Ionicons
             name="md-close-outline"
             size={24}
@@ -159,17 +158,16 @@ const Ratings_ReviewsScreen = () => {
             style={styles.modalIcon}
           />
           <View style={styles.imgModalView}>
-          <Image
-            resizeMode="stretch"
-            style={styles.imgModal}
-            source={{
-              uri: `${modalImage}`,
-            }}
-          />
+            <Image
+              resizeMode="stretch"
+              style={styles.imgModal}
+              source={{
+                uri: `${modalImage}`,
+              }}
+            />
           </View>
-          
         </Modal>
-        </View>
+
         {card3 ? (
           <TouchableOpacity onPress={() => dropDown3()}>
             <CardRate
@@ -185,7 +183,7 @@ const Ratings_ReviewsScreen = () => {
             />
             <Text style={styles.subTitle3}>Last Reviewed 01 December 2019</Text>
 
-            {NQSRatingData.map((item) => {
+            {props.nqsrating.map((item) => {
               return (
                 <View style={styles.rowDetail}>
                   <Text style={styles.detailLeft}>{item.criteria}</Text>
@@ -320,25 +318,11 @@ const styles = StyleSheet.create({
   imgModal: {
     width: 400,
     height: 400,
-  
-  
   },
-  modalView:{
+  imgModalView: {
     flex: 1,
-    //backgroundColor: 'transparent',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "rgba(0,0,0,0.7)",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  imgModalView:{
-    // flex:1,
-    
-    // justifyContent:"center",
-    // alignItems:"center",
-    flex: 1,
-    //backgroundColor: 'transparent',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
 });
