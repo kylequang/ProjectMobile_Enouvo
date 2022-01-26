@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
   timeText: {
     color: '#2D1F21',
     fontSize: 14,
-    fontWeight: 24,
     fontStyle: 'normal',
     fontWeight: 'normal',
     textAlign: 'center',
