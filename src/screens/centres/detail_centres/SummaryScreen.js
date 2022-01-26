@@ -12,17 +12,11 @@ import {
 import {
   MaterialIcons,
   Entypo,
-  MaterialCommunityIcons,
-  Ionicons,
   FontAwesome5,
-  Feather,
 } from '@expo/vector-icons';
 import CircleBorder from '../../../components/CircleBorder';
 
 export default function SummaryScreen(props) {
-  useEffect(() => {
-
-  }, [])
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView

@@ -6,7 +6,7 @@ const CardRateDetail = ({ img, title, onPress, children }) => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        {{ img } ? <Image source={img} style={styles.icon} /> : null}
+        {img ? <Image source={img} style={styles.icon} /> : null}
         <Text style={styles.title}>{title}</Text>
         <TouchableOpacity style={styles.imgStyle} onPress={onPress}>
           <Ionicons name="chevron-up" size={20} color={"#857E7F"} />

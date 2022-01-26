@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/core';
-import React, { useEffect, useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core'
+import React, { useEffect, useState } from 'react'
+import { Ionicons } from '@expo/vector-icons'
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -13,51 +13,49 @@ import {
   Dimensions,
   StatusBar,
   ScrollView,
-} from 'react-native';
-import { auth } from '../../../src/database/firebase';
-
+} from 'react-native'
+import { auth } from '../../../src/database/firebase'
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [hidePass, setHidePass] = useState(true);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [hidePass, setHidePass] = useState(true)
 
-  const navigation = useNavigation();
+  const navigation = useNavigation()
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.replace('BottomTab');
+        navigation.replace('BottomTab')
       }
-    });
+    })
 
-    return unsubscribe;
-  }, []);
+    return unsubscribe
+  }, [])
 
   const handleSignUp = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log('Registered with:', user.email);
+        const user = userCredentials.user
+        console.log('Registered with:', user.email)
         // alert('You registered successfully with ' + user.email);
       })
-      .catch((error) => alert(error.message));
-  };
+      .catch((error) => alert(error.message))
+  }
 
   const handleLogin = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log('Logged in with:', user.email);
+        const user = userCredentials.user
+        console.log('Logged in with:', user.email)
         // alert('You login successfully with ' + user.email);
       })
-      .catch((error) => alert(error.message));
-  };
+      .catch((error) => alert(error.message))
+  }
 
   return (
     <View behavior="padding" style={styles.container}>
-
       <Image
         style={{ width: 100, height: 100 }}
         source={require('../../../assets/logo/logo.png')}
@@ -107,14 +105,16 @@ const LoginScreen = () => {
       </View>
 
       <View>
-        <Text style={styles.contextFooter}>If you have trouble logging in to KindiCare CRM,{'\n'} please contact our Customer Care team. </Text>
+        <Text style={styles.contextFooter}>
+          If you have trouble logging in to KindiCare CRM,{'\n'} please contact
+          our Customer Care team.{' '}
+        </Text>
       </View>
     </View>
+  )
+}
 
-  );
-};
-
-export default LoginScreen;
+export default LoginScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -181,7 +181,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 0.02,
     fontSize: 14,
-    lineHeight: 24
+    lineHeight: 24,
   },
-});
-
+})
