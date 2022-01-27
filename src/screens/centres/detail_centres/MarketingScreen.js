@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import CardMarketing from "../../../components/CardMarketing";
 import ModalMarketing from "../../../components/ModalMarketing";
 

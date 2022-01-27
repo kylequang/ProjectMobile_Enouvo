@@ -50,15 +50,13 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     color: "#5C595A",
   },
-  icon: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
   column: {
     flexDirection: "column",
     paddingLeft: 12,
   },
   icon: {
+    flex: 1,
+    justifyContent: "flex-end",
     marginLeft: "auto",
     paddingRight: 14.5,
   },
