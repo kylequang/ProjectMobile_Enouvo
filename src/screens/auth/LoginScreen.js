@@ -2,17 +2,12 @@ import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import {
-  KeyboardAvoidingView,
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
   Image,
-  SafeAreaView,
-  Dimensions,
-  StatusBar,
-  ScrollView,
 } from 'react-native'
 import { auth } from '../../../src/database/firebase'
 
@@ -38,7 +33,6 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user
         console.log('Registered with:', user.email)
-        // alert('You registered successfully with ' + user.email);
       })
       .catch((error) => alert(error.message))
   }
@@ -49,7 +43,6 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user
         console.log('Logged in with:', user.email)
-        // alert('You login successfully with ' + user.email);
       })
       .catch((error) => alert(error.message))
   }

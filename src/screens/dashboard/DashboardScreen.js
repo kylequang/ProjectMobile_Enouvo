@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigation } from '@react-navigation/core'
 import { StyleSheet, View, LogBox } from 'react-native'
 import Header from '../../components/Header'
 import DashboardItem from '../../components/DashboardItem'
 import { getAllDashboard } from '../../services/getData'
 export default function DashboardScreen() {
-  const navigation = useNavigation()
   const [dashboards, setDashboards] = useState([])
   useEffect(async () => {
     LogBox.ignoreLogs(['Setting a timer'])

@@ -11,7 +11,7 @@ export default function BottomTab() {
   return (
     <Tab.Navigator
       initialRouteName="Dashboard"
-      screenOptions={({ navigation, route }) => ({
+      screenOptions={({ route }) => ({
         headerShown: false,
         tabBarIcon: ({ focused, color }) => {
           let iconName;

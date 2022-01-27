@@ -11,7 +11,7 @@ import Ratings_ReviewsScreen from "../screens/centres/detail_centres/Ratings_Rev
 
 const TabCentre = createMaterialTopTabNavigator();
 
-const TopTabNavigator = ({ route, navigation }) => {
+const TopTabNavigator = ({ route}) => {
   const [center, setCenter] = useState([]);
 
   // const [img, setImg] = useState();
@@ -55,13 +55,14 @@ const TopTabNavigator = ({ route, navigation }) => {
     >
       <TabCentre.Screen
         name="Summary"
-        children={() => (
+        children={(index) => (
           <SummaryScreen
             center={center}
             // avatar={img}
             info={geInfo}
             contact={contact}
             enquiries={enquiries}
+            id={index}
           />
         )}
         options={{

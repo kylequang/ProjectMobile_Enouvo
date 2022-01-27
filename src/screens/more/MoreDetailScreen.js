@@ -9,7 +9,9 @@ import {
  } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+
 import MoreDataTitle from "../../database/mock-data/MoreData";
+
 
 const MoreDetailScreen = () => {
   const [isEnabled, setIsEnabled] = useState(false);
