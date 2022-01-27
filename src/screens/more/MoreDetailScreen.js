@@ -5,27 +5,15 @@ import {
   Text,
   View,
   ScrollView,
-  Switch, LogBox,
-} from "react-native";
+  Switch,
+ } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import MoreDataTitle from "../../database/mock-data/MoreData";
-import { getAllMore } from "../../services/getData";
-import { getAllDashboard } from '../../services/getData'
+
 const MoreDetailScreen = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-
-  const [more, setMore] = useState([])
-  useEffect(async () => {
-    try {
-      LogBox.ignoreLogs(['Setting a timer'])
-      console.log('Thu')
-      setMore(await getAllMore())
-  } catch (e) {
-      console.error(e);
-  }
-  }, [])
 
   return (
     <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -65,18 +53,17 @@ const MoreDetailScreen = () => {
       </View>
 
       <View style={styles.block}>
-      {
-          more.title.map((more, id) => {
-            return (
-              <TouchableOpacity key={id} style={styles.BtnItem}>
-                <Text style={styles.leftContent}>{more}</Text>
+        {MoreDataTitle.map((more, id) => {
+          return (
+            <TouchableOpacity key={id} style={styles.BtnItem}>
+              <Text style={styles.leftContent}>{more}</Text>
 
-                <View style={styles.rightContent}>
-                  <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
-                </View>
-              </TouchableOpacity>
-            );
-          })}
+              <View style={styles.rightContent}>
+                <Ionicons name="arrow-forward" size={19} color={"#2D1F21"} />
+              </View>
+            </TouchableOpacity>
+          );
+        })}
       </View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.BtnItem}>

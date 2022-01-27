@@ -6,10 +6,8 @@ import {
   View,
   ScrollView,
   Image,
-  Modal,
-} from "react-native";
+ } from "react-native";
 import ImageView from "react-native-image-viewing";
-import { Ionicons } from "@expo/vector-icons";
 import { Rating } from "react-native-ratings";
 import CardRate from "../../../components/CardRate";
 import CardRateDetail from "../../../components/CardRateDetail";
@@ -98,9 +96,9 @@ const Ratings_ReviewsScreen = (props) => {
         ) : (
           <CardRateDetail title="User Reviews" onPress={dropDown2}>
             {props.userReviews.map(
-              ({ username, role, dateReview, avatar, comment, star, img }) => {
+              ({ username, role, dateReview, avatar, comment, star, img }, key) => {
                 return (
-                  <View style={styles.reviewView}>
+                  <View style={styles.reviewView} key={key}>
                     <View style={styles.userStyle}>
                       <Image
                         style={styles.avatarStyle}
@@ -130,7 +128,7 @@ const Ratings_ReviewsScreen = (props) => {
                     <View style={styles.imgView}>
                       {img.map((items, index) => {
                         return (
-                          <TouchableOpacity
+                          <TouchableOpacity key={index}
                             style={styles.imgItem}
                             onPress={() => {
                               openSettingsModal(img, index);
@@ -149,7 +147,7 @@ const Ratings_ReviewsScreen = (props) => {
                   </View>
                 );
               }
-            )}
+            )}  
           </CardRateDetail>
         )}
 
