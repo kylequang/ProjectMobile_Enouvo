@@ -8,11 +8,11 @@ import {
   Image,
   Modal,
 } from "react-native";
+import ImageView from "react-native-image-viewing";
 import { Ionicons } from "@expo/vector-icons";
 import { Rating } from "react-native-ratings";
 import CardRate from "../../../components/CardRate";
 import CardRateDetail from "../../../components/CardRateDetail";
-
 
 const Ratings_ReviewsScreen = (props) => {
   const [card1, setCard1] = useState(true);
@@ -20,7 +20,8 @@ const Ratings_ReviewsScreen = (props) => {
   const [card3, setCard3] = useState(true);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalImage, setModalImage] = useState("");
+  const [modalImage, setModalImage] = useState([]);
+  const [imgIndex, setImgIndex] = useState(0);
 
   const dropDown1 = () => {
     if (card1) {
@@ -44,10 +45,13 @@ const Ratings_ReviewsScreen = (props) => {
     }
   };
 
-  const openSettingsModal = (items) => {
-    setModalImage(items);
+  const openSettingsModal = (img, index) => {
+    let images = img.map((item) => ({ uri: item }));
+    setModalImage(images);
     setModalVisible(!modalVisible);
+    setImgIndex(index);
   };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
@@ -124,12 +128,12 @@ const Ratings_ReviewsScreen = (props) => {
                     <Text style={styles.reviewText}>{comment}</Text>
 
                     <View style={styles.imgView}>
-                      {img.map((items) => {
+                      {img.map((items, index) => {
                         return (
                           <TouchableOpacity
                             style={styles.imgItem}
                             onPress={() => {
-                              openSettingsModal(items);
+                              openSettingsModal(img, index);
                             }}
                           >
                             <Image
@@ -149,24 +153,12 @@ const Ratings_ReviewsScreen = (props) => {
           </CardRateDetail>
         )}
 
-        <Modal visible={modalVisible}>
-          <Ionicons
-            name="md-close-outline"
-            size={24}
-            color={"#2D1F21"}
-            onPress={() => setModalVisible(false)}
-            style={styles.modalIcon}
-          />
-          <View style={styles.imgModalView}>
-            <Image
-              resizeMode="stretch"
-              style={styles.imgModal}
-              source={{
-                uri: `${modalImage}`,
-              }}
-            />
-          </View>
-        </Modal>
+        <ImageView
+          images={modalImage}
+          imageIndex={imgIndex}
+          visible={modalVisible}
+          onRequestClose={() => setModalVisible(false)}
+        />
 
         {card3 ? (
           <TouchableOpacity onPress={() => dropDown3()}>
