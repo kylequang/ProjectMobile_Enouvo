@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 const Item = ({ item, onPress, backgroundColor, color, icon }) => {
   return (

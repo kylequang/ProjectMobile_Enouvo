@@ -55,13 +55,14 @@ const TopTabNavigator = ({ route}) => {
     >
       <TabCentre.Screen
         name="Summary"
-        children={() => (
+        children={(index) => (
           <SummaryScreen
             center={center}
             // avatar={img}
             info={geInfo}
             contact={contact}
             enquiries={enquiries}
+            id={index}
           />
         )}
         options={{

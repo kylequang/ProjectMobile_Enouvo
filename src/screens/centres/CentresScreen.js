@@ -36,7 +36,7 @@ export default function CentresScreen() {
   }, [])
 
   const renderItem = ({ item }) => {
-    const center = item
+    // const center = item
     const navigateToDetail = (id) => {
       setSelectedId(id)
       setModalVisible(false)

@@ -9,9 +9,7 @@ import {
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-import MoreDataTitle from "../../database/mock-data/MoreData";
 import { getAllMore } from "../../services/getData";
-import { getAllDashboard } from '../../services/getData'
 const MoreDetailScreen = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
