@@ -11,12 +11,13 @@ import CentresScreen from './src/screens/centres/CentresScreen';
 import MoreStackNavigator from './src/navigations/MoreStackNavigator';
 
 const Stack = createNativeStackNavigator();
+
 export default function App() {
   const [timePassed, setTimePassed] = useState(false);
   const [IsReady, SetIsReady] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setTimePassed({ timePassed: true }), 10000);
+    setTimeout(() => setTimePassed({ timePassed: true }), 5000);
   }, []);
 
   const LoadFontsAndRestoreToken = async () => {
@@ -28,7 +29,7 @@ export default function App() {
       <AppLoading
         startAsync={LoadFontsAndRestoreToken}
         onFinish={() => SetIsReady(true)}
-        onError={() => {}}
+        onError={(err) => console.log(err)}
       />
     );
   }

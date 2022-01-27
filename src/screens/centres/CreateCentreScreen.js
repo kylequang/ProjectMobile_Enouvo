@@ -6,16 +6,21 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/core'
 import { createCentre } from '../../services/putData'
 const CreateCentreScreen = () => {
+  const navigation = useNavigation();
   const [name, setName] = useState('')
   const [img, setImg] = useState('')
   const createNewCentre = () => {
     createCentre(name, img)
-    Alert.alert('You added new centre successfully')
+    setTimeout(() => {
+      Alert.alert('You added new centre successfully')
+    }, 5000)
     setName('')
     setImg('')
+    navigation.navigate('Centre')
   }
   return (
     <View style={styles.container}>
