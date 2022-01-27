@@ -1,7 +1,7 @@
 import { Switch, TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-const CardMarketing = ({ title, func, money, specSwitch, isEnabledSpec }) => {
+const CardMarketing = ({ title, func, money, isEnabledSpec }) => {
   return (
     <View style={styles.block}>
       <View style={styles.leftContent}>

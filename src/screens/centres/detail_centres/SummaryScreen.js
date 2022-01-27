@@ -17,8 +17,9 @@ import {
 import CircleBorder from '../../../components/CircleBorder';
 
 export default function SummaryScreen(props) {
+  // console.log(props.id);
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} key={props.key}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -95,7 +96,7 @@ export default function SummaryScreen(props) {
               <Text style={styles.text}>Contact Info</Text>
               {
                 props.contact.map((item) => (
-                  <View style={styles.contactContainer}>
+                  <View style={styles.contactContainer} key={item.id}>
                     <MaterialIcons name={item.icon} size={20} color="#DB147F" />
                     <Text style={[styles.contactText, { color: '#171725' }]}>
                       {item.name}
@@ -111,7 +112,7 @@ export default function SummaryScreen(props) {
           <View style={styles.divider}></View>
           {
             props.enquiries.map((item) => (
-              <View style={styles.inquireContainer}>
+              <View style={styles.inquireContainer} key={item.id}>
                 <View style={styles.row}>
                   <CircleBorder
                     size={35}
