@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import SummaryScreen from "../screens/centres/detail_centres/SummaryScreen";
 import Centre_InfoScreen from "../screens/centres/detail_centres/Centre_InfoScreen";
@@ -14,7 +14,7 @@ const TabCentre = createMaterialTopTabNavigator();
 const TopTabNavigator = ({ route, navigation }) => {
   const [center, setCenter] = useState([]);
 
-  const [img, setImg] = useState();
+  // const [img, setImg] = useState();
 
   const [geInfo, setInfo] = useState([]);
   const [contact, setContact] = useState([]);
@@ -30,9 +30,10 @@ const TopTabNavigator = ({ route, navigation }) => {
     const { center } = route.params;
 
     setCenter(center);
-    setImg(center.image);
+    // setImg(center.image);
 
     setInfo(center.General_Infor);
+    console.log(geInfo);
     setContact(center.Contact_Infor);
     setEnquiries(center.Enquiries_Sum);
     setFeature(center.Features);
@@ -57,7 +58,7 @@ const TopTabNavigator = ({ route, navigation }) => {
         children={() => (
           <SummaryScreen
             center={center}
-            avatar={img}
+            // avatar={img}
             info={geInfo}
             contact={contact}
             enquiries={enquiries}
@@ -264,4 +265,3 @@ const TopTabNavigator = ({ route, navigation }) => {
 
 export default TopTabNavigator;
 
-const styles = StyleSheet.create({});

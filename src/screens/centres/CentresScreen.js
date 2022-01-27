@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/core';
+import React, { useState, useEffect } from 'react'
+import { useNavigation } from '@react-navigation/core'
 
 import {
   View,
@@ -12,43 +12,40 @@ import {
   SafeAreaView,
   Alert,
   FlatList,
-  StatusBar, LogBox,
-} from 'react-native';
-import { Divider } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons';
-import Header from '../../components/Header';
-import Item from '../../components/Item';
-import { SLIDER_DATA } from '../../services/slideCenter';
-import CentreItem from '../../components/CentreItem';
-import CentreSliderItem from '../../components/CentreSliderItem';
-import { getAllCentres } from '../../services/getData';
+  KeyboardAvoidingView,
+  LogBox,
+} from 'react-native'
+import { Divider } from 'react-native-elements'
+import { Ionicons } from '@expo/vector-icons'
+import Header from '../../components/Header'
+import Item from '../../components/Item'
+import { SLIDER_DATA } from '../../services/slideCenter'
+import CentreItem from '../../components/CentreItem'
+import CentreSliderItem from '../../components/CentreSliderItem'
+import { getAllCentres } from '../../services/getData'
 export default function CentresScreen() {
-  const [search, setSearch] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
-  const navigation = useNavigation();
-  const [centers, setCenters] = useState([]);
+  const [search, setSearch] = useState('')
+  const [modalVisible, setModalVisible] = useState(false)
+  const [selectedId, setSelectedId] = useState(null)
+  const navigation = useNavigation()
+  const [centers, setCenters] = useState([])
 
   useEffect(async () => {
-    LogBox.ignoreLogs(['Setting a timer']);
+    LogBox.ignoreLogs(['Setting a timer'])
     setCenters(await getAllCentres())
-  }, []);
+  }, [])
 
   const renderItem = ({ item }) => {
     const center = item
     const navigateToDetail = (id) => {
-      setSelectedId(id);
-      setModalVisible(false);
+      setSelectedId(id)
+      setModalVisible(false)
 
-      navigation.navigate('Centre Details', { item })
-    };
-    const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff';
-    const color = item.id === selectedId ? '#DB147F' : '#ACB2B8';
-    const icon =
-      item.id === selectedId
-        ? 'radio-button-checked'
-        : 'radio-button-unchecked';
-
+      navigation.navigate('Centre Details', { item });
+    }
+    const backgroundColor = item.id === selectedId ? '#FFF0FB' : '#fff'
+    const color = item.id === selectedId ? '#DB147F' : '#ACB2B8'
+    const icon = item.id === selectedId ? 'radio-button-checked' : 'radio-button-unchecked'
     return (
       <Item
         item={item}
@@ -57,10 +54,10 @@ export default function CentresScreen() {
         color={color}
         icon={icon}
       />
-    );
-  };
+    )
+  }
   return (
-    <View>
+    <KeyboardAvoidingView behavior="padding">
       <View style={styles.container}>
         <Header
           iconName="storefront-outline"
@@ -76,10 +73,9 @@ export default function CentresScreen() {
             <CentreSliderItem
               key={1}
               icon={require('../../../assets/icons/ic-centre.png')}
-              textTitle='Total Centres'
+              textTitle="Total Centres"
               total={centers.length}
-              ellipseColor= '#FFF0FB'
-             
+              ellipseColor="#FFF0FB"
             />
             {SLIDER_DATA.map((item, id) => {
               return (
@@ -91,11 +87,10 @@ export default function CentresScreen() {
                   ellipseColor={item.ellipseColor}
                   key={item.id}
                 />
-              );
+              )
             })}
           </ScrollView>
         </View>
-
       </View>
       <View style={styles.searchContainer}>
         <View style={styles.searchContent}>
@@ -122,13 +117,10 @@ export default function CentresScreen() {
           style={styles.mainScroll}
           showsVerticalScrollIndicator={false}
         >
-          {
-            centers && centers.map((center, id) => {
-              return (
-                <CentreItem center={center} key={id} />
-              )
-            })
-          }
+          {centers &&
+            centers.map((center, id) => {
+              return <CentreItem center={center} key={id} />
+            })}
         </ScrollView>
       </SafeAreaView>
 
@@ -138,8 +130,8 @@ export default function CentresScreen() {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
+            Alert.alert('Modal has been closed.')
+            setModalVisible(!modalVisible)
           }}
         >
           <View style={styles.centeredView}>
@@ -186,23 +178,23 @@ export default function CentresScreen() {
                   borderRadius: 8,
                 }}
               >
-                {
-                  centers ? <FlatList
+                {centers ? (
+                  <FlatList
                     data={centers}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item, index) => index.toString()}
                     extraData={selectedId}
-                  /> : ''
-                }
-
+                  />
+                ) : (
+                  ''
+                )}
               </View>
             </View>
           </View>
         </Modal>
       </View>
-
-    </View>
-  );
+    </KeyboardAvoidingView>
+  )
 }
 const styles = StyleSheet.create({
   container: {
@@ -278,87 +270,8 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     position: 'relative',
-
     bottom: 560,
     width: '100%',
-  },
-  mainCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    marginTop: 20,
-  },
-  imageCard: {
-    // borderTopStartRadius: 6,
-  },
-  img: {
-    width: '100%',
-    height: 100,
-    resizeMode: 'cover',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-  },
-  imgNumber: {
-    position: 'absolute',
-    top: 12,
-    left: 10,
-    width: 35,
-    height: 30,
-    padding: 5,
-    backgroundColor: '#DB147F',
-    borderRadius: 6,
-  },
-  numberText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: 'bold',
-  },
-  logoImg: {
-    position: 'absolute',
-    right: 10,
-    bottom: 12,
-    backgroundColor: '#fff',
-    borderRadius: 6,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-  },
-  mainContent: {
-    padding: 15,
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-  },
-  mainTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2D1F21',
-    fontStyle: 'normal',
-    lineHeight: 24,
-    letterSpacing: 0.02,
-  },
-  mainText: {
-    flexDirection: 'row',
-    marginTop: 12,
-  },
-  mainSub: {
-    marginLeft: 10,
-    fontSize: 14,
-    color: '#2D1F21',
-    fontStyle: 'normal',
-    lineHeight: 24,
-    letterSpacing: 0.02,
-    alignContent: 'center',
-  },
-  kindiCareButton: {
-    marginTop: -4,
-    marginLeft: 10,
-    padding: 5,
-    borderRadius: 6,
-  },
-  kindiCareText: {
-    alignContent: 'center',
-    fontSize: 12,
-    fontStyle: 'normal',
-    lineHeight: 16,
-    letterSpacing: 0.02,
   },
   centeredView: {
     flex: 1,
@@ -401,4 +314,4 @@ const styles = StyleSheet.create({
     letterSpacing: 0.02,
     textAlign: 'center',
   },
-});
+})

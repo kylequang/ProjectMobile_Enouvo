@@ -6,11 +6,12 @@ const Item = ({ item, onPress, backgroundColor, color, icon }) => {
     <TouchableOpacity
       onPress={onPress}
       style={[styles.item, backgroundColor]}
-      key={item.id}
+      // key={item.id}
     >
       <View style={styles.row}>
         <View style={styles.row}>
-          <Image source={item.img} />
+        {/* <Image source={{ uri: item.image }} /> */}
+          {/* <Image source={item.img} /> */}
           <Text style={styles.title}> {item.name}</Text>
         </View>
 
