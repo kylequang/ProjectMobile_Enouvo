@@ -29,6 +29,7 @@ export default function App() {
       <AppLoading
         startAsync={LoadFontsAndRestoreToken}
         onFinish={() => SetIsReady(true)}
+        onError={(err) => console.log(err)}
       />
     );
   }
