@@ -6,7 +6,9 @@ import {
   View,
   ScrollView,
   Image,
-} from "react-native";
+
+ } from "react-native";
+
 import ImageView from "react-native-image-viewing";
 import { Rating } from "react-native-ratings";
 import CardRate from "../../../components/CardRate";
@@ -97,6 +99,7 @@ const Ratings_ReviewsScreen = (props) => {
           <CardRateDetail title="User Reviews" onPress={dropDown2}>
             {props.userReviews.map(
               ({ username, role, dateReview, avatar, comment, star, img } , key) => {
+
                 return (
                   <View style={styles.reviewView} key={key}>
                     <View style={styles.userStyle}>
@@ -128,7 +131,7 @@ const Ratings_ReviewsScreen = (props) => {
                     <View style={styles.imgView}>
                       {img.map((items, index) => {
                         return (
-                          <TouchableOpacity
+                          <TouchableOpacity key={index}
                             style={styles.imgItem}
                             onPress={() => {
                               openSettingsModal(img, index);
@@ -148,7 +151,7 @@ const Ratings_ReviewsScreen = (props) => {
                   </View>
                 );
               }
-            )}
+            )}  
           </CardRateDetail>
         )}
 
